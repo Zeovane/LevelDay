@@ -4,6 +4,9 @@ import Footer from './components/Footer';
 import AgendaView from './components/AgendaView';
 import NotesView from './components/NotesView';
 import NoteDetailView from './components/NoteDetailView';
+import ProfileView from './components/ProfileView';
+import StoreView from './components/StoreView';
+import SettingsView from './components/SettingsView';
 import { Task, Note, Annotation } from './types';
 import './style.css';
 
@@ -130,6 +133,25 @@ const App: React.FC = () => {
               ));
             }
           }}
+        />;
+      case 'perfil':
+        return <ProfileView 
+          userCoins={userCoins}
+          userXP={userXP}
+        />;
+      case 'loja':
+        return <StoreView 
+          userCoins={userCoins}
+          onPurchase={(itemId, cost) => {
+            if (userCoins >= cost) {
+              setUserCoins(prev => prev - cost);
+              alert('Compra realizada com sucesso!');
+            }
+          }}
+        />;
+      case 'settings':
+        return <SettingsView 
+          onBack={() => setCurrentPage('perfil')}
         />;
       default:
         return <div className="bg-[#f9c751] h-full flex items-center justify-center">
