@@ -21,8 +21,8 @@ const ProfileView: React.FC<ProfileViewProps> = ({ userCoins, userXP }) => {
         {/* User Stats Card */}
         <div className="theme-bg-card rounded-lg shadow-md p-6">
           <div className="flex items-center justify-center mb-4">
-            <div className="w-24 h-24 bg-[#f08436] rounded-full flex items-center justify-center">
-              <svg className="w-16 h-16 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div className="w-24 h-24 theme-primary rounded-full flex items-center justify-center">
+              <svg className="w-16 h-16 theme-text-light" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
               </svg>
             </div>
@@ -33,10 +33,10 @@ const ProfileView: React.FC<ProfileViewProps> = ({ userCoins, userXP }) => {
         {/* Stats Grid */}
         <div className="grid grid-cols-2 gap-4">
           {/* Coins Card */}
-          <div className="bg-white rounded-lg shadow-md p-4">
+          <div className="theme-bg-card rounded-lg shadow-md p-4">
             <div className="flex items-center justify-center mb-2">
-              <div className="w-12 h-12 bg-[#f9c751] border-2 border-[#e4a82e] rounded-full flex items-center justify-center">
-                <span className="text-black font-bold text-lg">S</span>
+              <div className="w-12 h-12 theme-secondary border-2 theme-border-dark rounded-full flex items-center justify-center">
+                <span className="theme-text-primary font-bold text-lg">S</span>
               </div>
             </div>
             <p className="text-center text-sm theme-text-secondary mb-1">Moedas</p>
@@ -44,10 +44,10 @@ const ProfileView: React.FC<ProfileViewProps> = ({ userCoins, userXP }) => {
           </div>
 
           {/* XP Card */}
-          <div className="bg-white rounded-lg shadow-md p-4">
+          <div className="theme-bg-card rounded-lg shadow-md p-4">
             <div className="flex items-center justify-center mb-2">
-              <div className="w-12 h-12 bg-[#1eae89] rounded-full flex items-center justify-center">
-                <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <div className="w-12 h-12 theme-success rounded-full flex items-center justify-center">
+                <svg className="w-6 h-6 theme-text-light" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
                 </svg>
               </div>
@@ -62,7 +62,7 @@ const ProfileView: React.FC<ProfileViewProps> = ({ userCoins, userXP }) => {
           <h3 className="text-xl font-bold theme-text-primary mb-4">Conquistas</h3>
           <div className="space-y-3">
             <div className="flex items-center p-3 theme-bg-container rounded-lg">
-              <div className="w-12 h-12 bg-[#f08436] rounded-full flex items-center justify-center mr-3">
+              <div className="w-12 h-12 theme-primary rounded-full flex items-center justify-center mr-3">
                 <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path>
                 </svg>
@@ -106,7 +106,7 @@ const ProfileView: React.FC<ProfileViewProps> = ({ userCoins, userXP }) => {
                 <div className="w-20 text-sm theme-text-secondary">{day}</div>
                 <div className="flex-1 h-4 theme-bg-container rounded-full mx-3 overflow-hidden">
                   <div 
-                    className="h-full bg-[#1eae89] rounded-full transition-all"
+                    className="h-full theme-success rounded-full transition-all"
                     style={{ width: `${Math.random() * 100}%` }}
                   ></div>
                 </div>

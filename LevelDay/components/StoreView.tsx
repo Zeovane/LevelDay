@@ -109,11 +109,11 @@ const StoreView: React.FC<StoreViewProps> = ({ userCoins, purchasedThemes, onPur
           <h2 className="text-2xl font-bold theme-text-primary mb-2">Loja</h2>
           <p className="theme-text-secondary text-sm">Personalize sua experiência</p>
           <div className="mt-4 flex items-center justify-center">
-            <div className="flex items-center bg-[#f9c751] border-2 border-[#e4a82e] rounded-full px-4 py-2">
-              <div className="w-6 h-6 bg-[#f9c751] border-2 border-[#e4a82e] rounded-full flex items-center justify-center mr-2">
-                <span className="text-black font-bold text-xs">S</span>
+            <div className="flex items-center theme-secondary border-2 theme-border-dark rounded-full px-4 py-2">
+              <div className="w-6 h-6 theme-secondary border-2 theme-border-dark rounded-full flex items-center justify-center mr-2">
+                <span className="theme-text-primary font-bold text-xs">S</span>
               </div>
-              <span className="font-bold text-lg text-gray-800">{userCoins.toLocaleString()}</span>
+              <span className="font-bold text-lg theme-text-primary">{userCoins.toLocaleString()}</span>
             </div>
           </div>
         </div>
@@ -138,9 +138,9 @@ const StoreView: React.FC<StoreViewProps> = ({ userCoins, purchasedThemes, onPur
                   <p className="text-xs theme-text-secondary text-center mb-3 min-h-[32px]">{item.description}</p>
                   
                   <div className="flex items-center justify-center mb-3">
-                    <div className="flex items-center bg-[#f9c751] border border-[#e4a82e] rounded-full px-3 py-1">
-                      <div className="w-4 h-4 bg-[#f9c751] border border-[#e4a82e] rounded-full flex items-center justify-center mr-1">
-                        <span className="text-black font-bold text-[10px]">S</span>
+                    <div className="flex items-center theme-secondary border theme-border-dark rounded-full px-3 py-1">
+                      <div className="w-4 h-4 theme-secondary border theme-border-dark rounded-full flex items-center justify-center mr-1">
+                        <span className="theme-text-primary font-bold text-[10px]">S</span>
                       </div>
                       <span className={`font-bold text-sm ${canAfford ? 'theme-text-primary' : 'theme-text-secondary'}`}>
                         {item.cost}
@@ -155,7 +155,7 @@ const StoreView: React.FC<StoreViewProps> = ({ userCoins, purchasedThemes, onPur
                       isPurchased
                         ? 'bg-green-500 text-white cursor-default'
                         : canAfford
-                        ? 'bg-[#1eae89] hover:bg-[#189a79] text-white'
+                        ? 'theme-success hover:opacity-90 theme-text-light'
                         : 'theme-bg-container theme-text-secondary cursor-not-allowed'
                     }`}
                   >

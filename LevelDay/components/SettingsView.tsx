@@ -95,7 +95,7 @@ const SettingsView: React.FC<SettingsViewProps> = ({ onBack, purchasedThemes, cu
                   className={`p-4 rounded-lg border-2 transition-all ${
                     currentTheme === 'default'
                       ? 'border-[#f08436] bg-orange-50'
-                      : 'border-gray-200 bg-white hover:border-gray-300'
+                      : 'theme-border theme-bg-card hover:opacity-80'
                   }`}
                 >
                   <div className="flex flex-col items-center">
@@ -114,7 +114,7 @@ const SettingsView: React.FC<SettingsViewProps> = ({ onBack, purchasedThemes, cu
                     className={`p-4 rounded-lg border-2 transition-all ${
                       currentTheme === 'blue'
                         ? 'border-blue-500 bg-blue-50'
-                        : 'border-gray-200 bg-white hover:border-gray-300'
+                        : 'theme-border theme-bg-card hover:opacity-80'
                     }`}
                   >
                     <div className="flex flex-col items-center">
@@ -134,12 +134,12 @@ const SettingsView: React.FC<SettingsViewProps> = ({ onBack, purchasedThemes, cu
                     className={`p-4 rounded-lg border-2 transition-all ${
                       currentTheme === 'dark'
                         ? 'border-gray-700 bg-gray-100'
-                        : 'border-gray-200 bg-white hover:border-gray-300'
+                        : 'theme-border theme-bg-card hover:opacity-80'
                     }`}
                   >
                     <div className="flex flex-col items-center">
                       <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-gray-700 via-gray-800 to-gray-900 mb-2"></div>
-                      <span className="text-xs font-semibold theme-text-primary">Escuro</span>
+                      <span className={`text-xs font-semibold ${currentTheme === 'dark' ? 'text-gray-900' : 'theme-text-primary'}`}>Escuro</span>
                       {currentTheme === 'dark' && (
                         <div className="mt-1 w-2 h-2 bg-gray-700 rounded-full"></div>
                       )}
