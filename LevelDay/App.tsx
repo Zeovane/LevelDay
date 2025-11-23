@@ -32,6 +32,8 @@ const App: React.FC = () => {
   const [userCoins, setUserCoins] = useState(1250);
   const [userXP, setUserXP] = useState(124821468);
   const [isCalendarOpen, setIsCalendarOpen] = useState(false);
+  const [purchasedThemes, setPurchasedThemes] = useState<Set<string>>(new Set());
+  const [currentTheme, setCurrentTheme] = useState<'default' | 'blue' | 'dark'>('default');
 
   const handleTabChange = (tab: 'Perfil' | 'Agenda' | 'Loja') => {
     setActiveTab(tab);
@@ -146,9 +148,16 @@ const App: React.FC = () => {
       case 'loja':
         return <StoreView 
           userCoins={userCoins}
-          onPurchase={(itemId, cost) => {
+          purchasedThemes={purchasedThemes}
+          onPurchase={(itemId, cost, itemName) => {
             if (userCoins >= cost) {
               setUserCoins(prev => prev - cost);
+              // Se for um tema, adicionar aos temas comprados
+              if (itemName === 'Tema Azul') {
+                setPurchasedThemes(prev => new Set(prev).add('blue'));
+              } else if (itemName === 'Tema Escuro') {
+                setPurchasedThemes(prev => new Set(prev).add('dark'));
+              }
               alert('Compra realizada com sucesso!');
             }
           }}
@@ -156,6 +165,9 @@ const App: React.FC = () => {
       case 'settings':
         return <SettingsView 
           onBack={() => setCurrentPage('perfil')}
+          purchasedThemes={purchasedThemes}
+          currentTheme={currentTheme}
+          onThemeChange={setCurrentTheme}
         />;
       default:
         return <div className="bg-[#f9c751] h-full flex items-center justify-center">
@@ -169,8 +181,11 @@ const App: React.FC = () => {
     return <LoginView onLogin={() => setIsLoggedIn(true)} />;
   }
 
+
+  const themeClass = currentTheme === 'blue' ? 'theme-blue' : currentTheme === 'dark' ? 'theme-dark' : '';
+  
   return (
-    <div className="app-container bg-gray-50 shadow-2xl rounded-3xl overflow-hidden flex flex-col relative mx-auto">
+    <div className={`app-container bg-gray-50 shadow-2xl rounded-3xl overflow-hidden flex flex-col relative mx-auto ${themeClass}`}>
       <Header 
         activeTab={activeTab}
         currentPage={currentPage}

@@ -2,7 +2,8 @@ import React from 'react';
 
 interface StoreViewProps {
   userCoins: number;
-  onPurchase?: (itemId: number, cost: number) => void;
+  purchasedThemes: Set<string>;
+  onPurchase?: (itemId: number, cost: number, itemName: string) => void;
 }
 
 interface StoreItem {
@@ -14,7 +15,7 @@ interface StoreItem {
   category: 'theme' | 'icon' | 'badge';
 }
 
-const StoreView: React.FC<StoreViewProps> = ({ userCoins, onPurchase }) => {
+const StoreView: React.FC<StoreViewProps> = ({ userCoins, purchasedThemes, onPurchase }) => {
   const storeItems: StoreItem[] = [
     {
       id: 1,
@@ -67,9 +68,18 @@ const StoreView: React.FC<StoreViewProps> = ({ userCoins, onPurchase }) => {
   ];
 
   const handlePurchase = (item: StoreItem) => {
+    // Verificar se o tema já foi comprado
+    if (item.category === 'theme') {
+      const themeKey = item.name === 'Tema Azul' ? 'blue' : item.name === 'Tema Escuro' ? 'dark' : '';
+      if (themeKey && purchasedThemes.has(themeKey)) {
+        alert('Você já possui este tema!');
+        return;
+      }
+    }
+
     if (userCoins >= item.cost) {
       if (onPurchase) {
-        onPurchase(item.id, item.cost);
+        onPurchase(item.id, item.cost, item.name);
       } else {
         alert(`Você comprou ${item.name} por ${item.cost} moedas!`);
       }
@@ -112,12 +122,15 @@ const StoreView: React.FC<StoreViewProps> = ({ userCoins, onPurchase }) => {
         <div className="grid grid-cols-2 gap-4">
           {storeItems.map((item) => {
             const canAfford = userCoins >= item.cost;
+            const isTheme = item.category === 'theme';
+            const themeKey = item.name === 'Tema Azul' ? 'blue' : item.name === 'Tema Escuro' ? 'dark' : '';
+            const isPurchased = isTheme && themeKey && purchasedThemes.has(themeKey);
             return (
               <div
                 key={item.id}
                 className={`bg-white rounded-lg shadow-md overflow-hidden border-2 ${getCategoryColor(item.category)} ${
                   !canAfford ? 'opacity-60' : ''
-                }`}
+                } ${isPurchased ? 'ring-2 ring-green-500' : ''}`}
               >
                 <div className="p-4">
                   <div className="text-4xl text-center mb-2">{item.icon}</div>
@@ -137,14 +150,16 @@ const StoreView: React.FC<StoreViewProps> = ({ userCoins, onPurchase }) => {
 
                   <button
                     onClick={() => handlePurchase(item)}
-                    disabled={!canAfford}
+                    disabled={!canAfford || isPurchased}
                     className={`w-full py-2 rounded-lg font-semibold text-sm transition-colors ${
-                      canAfford
+                      isPurchased
+                        ? 'bg-green-500 text-white cursor-default'
+                        : canAfford
                         ? 'bg-[#1eae89] hover:bg-[#189a79] text-white'
                         : 'bg-gray-300 text-gray-500 cursor-not-allowed'
                     }`}
                   >
-                    {canAfford ? 'Comprar' : 'Insuficiente'}
+                    {isPurchased ? 'Comprado' : canAfford ? 'Comprar' : 'Insuficiente'}
                   </button>
                 </div>
               </div>
