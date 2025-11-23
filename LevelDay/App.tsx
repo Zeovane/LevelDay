@@ -185,7 +185,7 @@ const App: React.FC = () => {
   const themeClass = currentTheme === 'blue' ? 'theme-blue' : currentTheme === 'dark' ? 'theme-dark' : '';
   
   return (
-    <div className={`app-container bg-gray-50 shadow-2xl rounded-3xl overflow-hidden flex flex-col relative mx-auto ${themeClass}`}>
+    <div className={`app-container theme-bg-container shadow-2xl rounded-3xl overflow-hidden flex flex-col relative mx-auto ${themeClass}`}>
       <Header 
         activeTab={activeTab}
         currentPage={currentPage}
@@ -198,7 +198,7 @@ const App: React.FC = () => {
         onDateChange={setCurrentDate}
       />
       
-      <main className="flex-grow bg-gray-50 overflow-hidden flex flex-col">
+      <main className="flex-grow theme-bg-container overflow-hidden flex flex-col">
         <div className="flex-1 overflow-y-auto">
           {renderCurrentView()}
         </div>
@@ -221,7 +221,7 @@ const App: React.FC = () => {
               setCurrentPage('agenda');
             }
           }}
-          className={`absolute w-14 h-14 bg-[#85cd39] rounded-full shadow-lg flex items-center justify-center text-white hover:bg-[#6aa82d] transition-colors z-10 ${
+          className={`absolute w-14 h-14 theme-accent rounded-full shadow-lg flex items-center justify-center theme-text-light hover:opacity-90 transition-colors z-10 ${
             currentPage === 'noteDetail' ? 'bottom-[142px]' : 'bottom-[70px]'
           } right-6`}
           aria-label="Toggle Notes"

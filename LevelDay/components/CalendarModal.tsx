@@ -99,26 +99,26 @@ const CalendarModal: React.FC<CalendarModalProps> = ({
   return (
     <div className="fixed inset-0 bg-black bg-opacity-60 z-50 flex justify-center items-center p-4" onClick={onClose}>
       <div 
-        className="bg-white rounded-lg shadow-xl w-full max-w-sm overflow-hidden"
+        className="theme-bg-card rounded-lg shadow-xl w-full max-w-sm overflow-hidden"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header */}
         <div className="theme-primary theme-text-light p-4 flex items-center justify-between">
           <button
             onClick={handlePreviousMonth}
-            className="text-white hover:text-orange-200 transition-colors p-1"
+            className="theme-text-light hover:opacity-80 transition-colors p-1"
             aria-label="Mês anterior"
           >
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7"></path>
             </svg>
           </button>
-          <h2 className="text-xl font-semibold">
+          <h2 className="text-xl font-semibold theme-text-light">
             {monthNames[currentMonth]} {currentYear}
           </h2>
           <button
             onClick={handleNextMonth}
-            className="text-white hover:text-orange-200 transition-colors p-1"
+            className="theme-text-light hover:opacity-80 transition-colors p-1"
             aria-label="Próximo mês"
           >
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -128,9 +128,9 @@ const CalendarModal: React.FC<CalendarModalProps> = ({
         </div>
 
         {/* Day names */}
-        <div className="grid grid-cols-7 gap-1 p-2 bg-gray-50">
+        <div className="grid grid-cols-7 gap-1 p-2 theme-bg-container">
           {dayNames.map(day => (
-            <div key={day} className="text-center text-xs font-semibold text-gray-600 py-2">
+            <div key={day} className="text-center text-xs font-semibold theme-text-secondary py-2">
               {day}
             </div>
           ))}
@@ -153,10 +153,10 @@ const CalendarModal: React.FC<CalendarModalProps> = ({
                 onClick={() => handleDateClick(day)}
                 className={`aspect-square rounded-lg flex flex-col items-center justify-center relative transition-all ${
                   dayIsSelected
-                    ? 'bg-[#f08436] text-white font-bold'
+                    ? 'theme-primary theme-text-light font-bold'
                     : dayIsToday
-                    ? 'bg-[#f9c751] text-gray-800 font-semibold'
-                    : 'hover:bg-gray-100 text-gray-700'
+                    ? 'theme-secondary theme-text-primary font-semibold'
+                    : 'hover:theme-bg-container theme-text-primary'
                 }`}
               >
                 <span className="text-sm">{day}</span>
@@ -174,7 +174,7 @@ const CalendarModal: React.FC<CalendarModalProps> = ({
         </div>
 
         {/* Footer */}
-        <div className="p-4 bg-gray-50 border-t border-gray-200 flex justify-between items-center">
+        <div className="p-4 theme-bg-container border-t theme-border flex justify-between items-center">
           <button
             onClick={handleToday}
             className="px-4 py-2 theme-success hover:theme-success-dark theme-text-light rounded-lg font-semibold transition-colors"
@@ -183,7 +183,7 @@ const CalendarModal: React.FC<CalendarModalProps> = ({
           </button>
           <button
             onClick={onClose}
-            className="px-4 py-2 bg-gray-200 hover:bg-gray-300 text-gray-700 rounded-lg font-semibold transition-colors"
+            className="px-4 py-2 theme-bg-container hover:opacity-80 theme-text-primary rounded-lg font-semibold transition-colors"
           >
             Fechar
           </button>

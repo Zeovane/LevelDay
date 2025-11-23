@@ -16,16 +16,16 @@ const AnnotationItem: React.FC<AnnotationItemProps> = ({ annotation, onClick }) 
   return (
     <div
       onClick={onClick}
-      className={`annotation-item flex items-center bg-white rounded-md shadow-sm mb-4 overflow-hidden h-12 ${
+      className={`annotation-item flex items-center theme-bg-card rounded-md shadow-sm mb-4 overflow-hidden h-12 ${
         annotation.isScheduled 
           ? 'opacity-60 cursor-default' 
-          : 'cursor-pointer hover:bg-gray-50 transition-colors'
+          : 'cursor-pointer hover:opacity-90 transition-colors'
       }`}
     >
-      <div className="bg-[#1eae89] text-white text-sm py-3 px-4 w-24 flex items-center justify-center">
+      <div className="theme-success theme-text-light text-sm py-3 px-4 w-24 flex items-center justify-center">
         <span>{annotation.time}</span>
       </div>
-      <div className="flex-grow py-3 px-4 text-gray-800 text-lg">
+      <div className="flex-grow py-3 px-4 theme-text-primary text-lg">
         <span>{annotation.text}</span>
       </div>
       {annotation.isScheduled && (

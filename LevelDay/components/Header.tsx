@@ -35,7 +35,7 @@ const Header: React.FC<HeaderProps> = ({
     return { day, month, dayOfWeek };
   };
 
-  const baseHeaderClasses = "p-4 flex items-center justify-between h-[68px] border-b border-orange-700 bg-[#f08436]";
+  const baseHeaderClasses = "p-4 flex items-center justify-between h-[68px] border-b theme-border-dark theme-primary";
 
   const renderHeaderContent = () => {
     if (activeTab === 'Perfil') {
@@ -47,18 +47,18 @@ const Header: React.FC<HeaderProps> = ({
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7"></path>
               </svg>
             </button>
-            <h1 className="text-xl font-semibold text-gray-100">CONFIGURAÇÕES</h1>
+            <h1 className="text-xl font-semibold theme-text-light">CONFIGURAÇÕES</h1>
             <div className="w-8"></div>
           </div>
         );
       } else {
         return (
           <div className={baseHeaderClasses}>
-            <h1 className="text-3xl font-light tracking-wider text-gray-100">PERFIL</h1>
+            <h1 className="text-3xl font-light tracking-wider theme-text-light">PERFIL</h1>
             <div className="flex items-center space-x-4">
               <div className="flex items-center bg-black bg-opacity-20 rounded-full px-3 py-1 border border-orange-500">
                 <div className="w-5 h-5 bg-[#f9c751] border-2 border-[#e4a82e] rounded-full flex items-center justify-center text-black font-bold text-xs mr-1">S</div>
-                <span className="font-semibold ml-1 text-gray-100">{userCoins}</span>
+                <span className="font-semibold ml-1 theme-text-light">{userCoins}</span>
               </div>
               <button onClick={onSettingsOpen}>
                 <svg className="w-8 h-8 text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -73,7 +73,7 @@ const Header: React.FC<HeaderProps> = ({
     } else if (activeTab === 'Loja') {
       return (
         <div className={baseHeaderClasses}>
-          <h1 className="text-3xl font-light tracking-wider text-gray-100">LOJA</h1>
+          <h1 className="text-3xl font-light tracking-wider theme-text-light">LOJA</h1>
           <div className="flex items-center space-x-4">
             <div className="flex items-center bg-black bg-opacity-20 rounded-full px-3 py-1 border border-orange-500">
               <div className="w-5 h-5 bg-[#f9c751] border-2 border-[#e4a82e] rounded-full flex items-center justify-center text-black font-bold text-xs mr-1">S</div>
@@ -91,7 +91,7 @@ const Header: React.FC<HeaderProps> = ({
       if (currentPage === 'noteDetail' && selectedNote) {
         return (
           <div className={baseHeaderClasses}>
-            <h1 className="text-2xl font-normal text-gray-100 tracking-wide capitalize">{selectedNote.title}</h1>
+            <h1 className="text-2xl font-normal theme-text-light tracking-wide capitalize">{selectedNote.title}</h1>
             <div className="flex items-center space-x-4">
               <button className="text-gray-300 hover:text-white">
                 <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -104,7 +104,7 @@ const Header: React.FC<HeaderProps> = ({
       } else if (currentPage === 'notes') {
         return (
           <div className={baseHeaderClasses}>
-            <h1 className="text-lg font-semibold text-gray-100 tracking-wider">BLOCO DE NOTAS</h1>
+            <h1 className="text-lg font-semibold theme-text-light tracking-wider">BLOCO DE NOTAS</h1>
             <div className="flex items-center space-x-4">
               <button className="text-gray-300 hover:text-white">
                 <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -159,11 +159,11 @@ const Header: React.FC<HeaderProps> = ({
                 </svg>
               </button>
               <div className="flex items-center cursor-pointer" onClick={handleToday}>
-                <span className="text-5xl font-light text-gray-100">{String(day).padStart(2, '0')}</span>
+                <span className="text-5xl font-light theme-text-light">{String(day).padStart(2, '0')}</span>
                 <div className="ml-3">
-                  <p className="text-sm font-semibold text-orange-200 tracking-wider">{month}, {dayOfWeek}</p>
+                  <p className="text-sm font-semibold theme-text-secondary tracking-wider">{month}, {dayOfWeek}</p>
                   {!isToday && (
-                    <p className="text-xs text-orange-300 mt-0.5">Toque para hoje</p>
+                    <p className="text-xs theme-text-secondary mt-0.5">Toque para hoje</p>
                   )}
                 </div>
               </div>

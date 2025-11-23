@@ -16,10 +16,10 @@ const ProfileView: React.FC<ProfileViewProps> = ({ userCoins, userXP }) => {
   };
 
   return (
-    <div className="bg-[#f9c751] h-full overflow-y-auto no-scrollbar">
+    <div className="theme-bg-main h-full overflow-y-auto no-scrollbar">
       <div className="p-6 space-y-6">
         {/* User Stats Card */}
-        <div className="bg-white rounded-lg shadow-md p-6">
+        <div className="theme-bg-card rounded-lg shadow-md p-6">
           <div className="flex items-center justify-center mb-4">
             <div className="w-24 h-24 bg-[#f08436] rounded-full flex items-center justify-center">
               <svg className="w-16 h-16 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -27,7 +27,7 @@ const ProfileView: React.FC<ProfileViewProps> = ({ userCoins, userXP }) => {
               </svg>
             </div>
           </div>
-          <h2 className="text-2xl font-bold text-gray-800 text-center mb-2">Usuário</h2>
+          <h2 className="text-2xl font-bold theme-text-primary text-center mb-2">Usuário</h2>
         </div>
 
         {/* Stats Grid */}
@@ -39,8 +39,8 @@ const ProfileView: React.FC<ProfileViewProps> = ({ userCoins, userXP }) => {
                 <span className="text-black font-bold text-lg">S</span>
               </div>
             </div>
-            <p className="text-center text-sm text-gray-600 mb-1">Moedas</p>
-            <p className="text-center text-2xl font-bold text-gray-800">{userCoins.toLocaleString()}</p>
+            <p className="text-center text-sm theme-text-secondary mb-1">Moedas</p>
+            <p className="text-center text-2xl font-bold theme-text-primary">{userCoins.toLocaleString()}</p>
           </div>
 
           {/* XP Card */}
@@ -52,24 +52,24 @@ const ProfileView: React.FC<ProfileViewProps> = ({ userCoins, userXP }) => {
                 </svg>
               </div>
             </div>
-            <p className="text-center text-sm text-gray-600 mb-1">XP</p>
-            <p className="text-center text-2xl font-bold text-gray-800">{formatXP(userXP)}</p>
+            <p className="text-center text-sm theme-text-secondary mb-1">XP</p>
+            <p className="text-center text-2xl font-bold theme-text-primary">{formatXP(userXP)}</p>
           </div>
         </div>
 
         {/* Achievements Section */}
-        <div className="bg-white rounded-lg shadow-md p-6">
-          <h3 className="text-xl font-bold text-gray-800 mb-4">Conquistas</h3>
+        <div className="theme-bg-card rounded-lg shadow-md p-6">
+          <h3 className="text-xl font-bold theme-text-primary mb-4">Conquistas</h3>
           <div className="space-y-3">
-            <div className="flex items-center p-3 bg-gray-50 rounded-lg">
+            <div className="flex items-center p-3 theme-bg-container rounded-lg">
               <div className="w-12 h-12 bg-[#f08436] rounded-full flex items-center justify-center mr-3">
                 <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path>
                 </svg>
               </div>
               <div className="flex-1">
-                <p className="font-semibold text-gray-800">Primeira Tarefa</p>
-                <p className="text-sm text-gray-500">Complete sua primeira tarefa</p>
+                <p className="font-semibold theme-text-primary">Primeira Tarefa</p>
+                <p className="text-sm theme-text-secondary">Complete sua primeira tarefa</p>
               </div>
             </div>
             <div className="flex items-center p-3 bg-gray-50 rounded-lg opacity-50">
@@ -79,8 +79,8 @@ const ProfileView: React.FC<ProfileViewProps> = ({ userCoins, userXP }) => {
                 </svg>
               </div>
               <div className="flex-1">
-                <p className="font-semibold text-gray-600">Maratonista</p>
-                <p className="text-sm text-gray-400">Complete 10 tarefas em um dia</p>
+                <p className="font-semibold theme-text-secondary">Maratonista</p>
+                <p className="text-sm theme-text-secondary opacity-70">Complete 10 tarefas em um dia</p>
               </div>
             </div>
             <div className="flex items-center p-3 bg-gray-50 rounded-lg opacity-50">
@@ -90,27 +90,27 @@ const ProfileView: React.FC<ProfileViewProps> = ({ userCoins, userXP }) => {
                 </svg>
               </div>
               <div className="flex-1">
-                <p className="font-semibold text-gray-600">Perfeccionista</p>
-                <p className="text-sm text-gray-400">Complete 100 tarefas</p>
+                <p className="font-semibold theme-text-secondary">Perfeccionista</p>
+                <p className="text-sm theme-text-secondary opacity-70">Complete 100 tarefas</p>
               </div>
             </div>
           </div>
         </div>
 
         {/* Progress Section */}
-        <div className="bg-white rounded-lg shadow-md p-6">
-          <h3 className="text-xl font-bold text-gray-800 mb-4">Progresso Semanal</h3>
+        <div className="theme-bg-card rounded-lg shadow-md p-6">
+          <h3 className="text-xl font-bold theme-text-primary mb-4">Progresso Semanal</h3>
           <div className="space-y-3">
             {['Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado', 'Domingo'].map((day, index) => (
               <div key={day} className="flex items-center">
-                <div className="w-20 text-sm text-gray-600">{day}</div>
-                <div className="flex-1 h-4 bg-gray-200 rounded-full mx-3 overflow-hidden">
+                <div className="w-20 text-sm theme-text-secondary">{day}</div>
+                <div className="flex-1 h-4 theme-bg-container rounded-full mx-3 overflow-hidden">
                   <div 
                     className="h-full bg-[#1eae89] rounded-full transition-all"
                     style={{ width: `${Math.random() * 100}%` }}
                   ></div>
                 </div>
-                <div className="w-12 text-right text-sm font-semibold text-gray-800">
+                <div className="w-12 text-right text-sm font-semibold theme-text-primary">
                   {Math.floor(Math.random() * 10)}
                 </div>
               </div>

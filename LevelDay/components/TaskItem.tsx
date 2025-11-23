@@ -16,7 +16,7 @@ const TaskItem: React.FC<TaskItemProps> = ({ task, style, onClick }) => {
 
   const tagColor = tagColors[task.tag] || 'bg-gray-400';
   const isCompleted = task.completed;
-  const bgClass = isCompleted ? 'bg-gray-400' : 'bg-[#85cd39]';
+  const bgClass = isCompleted ? 'bg-gray-400' : 'theme-accent';
   const opacityClass = isCompleted ? 'opacity-75' : '';
   const titleStyle = isCompleted ? { textDecoration: 'line-through' } : {};
 

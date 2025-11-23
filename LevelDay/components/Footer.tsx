@@ -36,15 +36,15 @@ const Footer: React.FC<FooterProps> = ({ activeTab, onTabChange }) => {
 
   return (
     <footer className="shrink-0 h-[56px]">
-      <div className="bg-[#f08436] border-t border-orange-700 grid grid-cols-3 h-full">
+      <div className="theme-primary border-t theme-border-dark grid grid-cols-3 h-full">
         {tabs.map(tab => (
           <button
             key={tab.name}
             onClick={() => onTabChange(tab.name)}
             className={`py-4 flex items-center justify-center transition-colors duration-200 ${
               activeTab === tab.name 
-                ? 'bg-[#ed6b2d] text-white' 
-                : 'text-orange-200 hover:bg-orange-700'
+                ? 'theme-primary-dark theme-text-light' 
+                : 'theme-text-secondary hover:theme-primary-dark'
             }`}
           >
             {tab.icon}

@@ -12,10 +12,10 @@ const SettingsView: React.FC<SettingsViewProps> = ({ onBack, purchasedThemes, cu
   const [soundEnabled, setSoundEnabled] = React.useState(true);
 
   return (
-    <div className="bg-[#f9c751] h-full overflow-y-auto no-scrollbar">
+    <div className="theme-bg-main h-full overflow-y-auto no-scrollbar">
       <div className="p-6 space-y-4">
         {/* Notification Settings */}
-        <div className="bg-white rounded-lg shadow-md p-4">
+        <div className="theme-bg-card rounded-lg shadow-md p-4">
           <div className="flex items-center justify-between mb-4">
             <div className="flex items-center">
               <div className="w-10 h-10 bg-[#f08436] rounded-full flex items-center justify-center mr-3">
@@ -24,8 +24,8 @@ const SettingsView: React.FC<SettingsViewProps> = ({ onBack, purchasedThemes, cu
                 </svg>
               </div>
               <div>
-                <h3 className="font-semibold text-gray-800">Notificações</h3>
-                <p className="text-sm text-gray-500">Receber alertas de tarefas</p>
+                <h3 className="font-semibold theme-text-primary">Notificações</h3>
+                <p className="text-sm theme-text-secondary">Receber alertas de tarefas</p>
               </div>
             </div>
             <button
@@ -44,7 +44,7 @@ const SettingsView: React.FC<SettingsViewProps> = ({ onBack, purchasedThemes, cu
         </div>
 
         {/* Sound Settings */}
-        <div className="bg-white rounded-lg shadow-md p-4">
+        <div className="theme-bg-card rounded-lg shadow-md p-4">
           <div className="flex items-center justify-between mb-4">
             <div className="flex items-center">
               <div className="w-10 h-10 bg-[#1eae89] rounded-full flex items-center justify-center mr-3">
@@ -53,8 +53,8 @@ const SettingsView: React.FC<SettingsViewProps> = ({ onBack, purchasedThemes, cu
                 </svg>
               </div>
               <div>
-                <h3 className="font-semibold text-gray-800">Som</h3>
-                <p className="text-sm text-gray-500">Ativar sons do aplicativo</p>
+                <h3 className="font-semibold theme-text-primary">Som</h3>
+                <p className="text-sm theme-text-secondary">Ativar sons do aplicativo</p>
               </div>
             </div>
             <button
@@ -74,7 +74,7 @@ const SettingsView: React.FC<SettingsViewProps> = ({ onBack, purchasedThemes, cu
 
         {/* Theme Settings */}
         {purchasedThemes.size > 0 && (
-          <div className="bg-white rounded-lg shadow-md p-4">
+          <div className="theme-bg-card rounded-lg shadow-md p-4">
             <div className="mb-4">
               <div className="flex items-center mb-4">
                 <div className="w-10 h-10 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full flex items-center justify-center mr-3">
@@ -83,8 +83,8 @@ const SettingsView: React.FC<SettingsViewProps> = ({ onBack, purchasedThemes, cu
                   </svg>
                 </div>
                 <div>
-                  <h3 className="font-semibold text-gray-800">Tema</h3>
-                  <p className="text-sm text-gray-500">Escolha o tema do aplicativo</p>
+                  <h3 className="font-semibold theme-text-primary">Tema</h3>
+                  <p className="text-sm theme-text-secondary">Escolha o tema do aplicativo</p>
                 </div>
               </div>
               
@@ -100,7 +100,7 @@ const SettingsView: React.FC<SettingsViewProps> = ({ onBack, purchasedThemes, cu
                 >
                   <div className="flex flex-col items-center">
                     <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-[#f08436] via-[#f9c751] to-[#85cd39] mb-2"></div>
-                    <span className="text-xs font-semibold text-gray-700">Padrão</span>
+                    <span className="text-xs font-semibold theme-text-primary">Padrão</span>
                     {currentTheme === 'default' && (
                       <div className="mt-1 w-2 h-2 bg-[#f08436] rounded-full"></div>
                     )}
@@ -119,7 +119,7 @@ const SettingsView: React.FC<SettingsViewProps> = ({ onBack, purchasedThemes, cu
                   >
                     <div className="flex flex-col items-center">
                       <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-blue-400 via-blue-500 to-blue-600 mb-2"></div>
-                      <span className="text-xs font-semibold text-gray-700">Azul</span>
+                      <span className="text-xs font-semibold theme-text-primary">Azul</span>
                       {currentTheme === 'blue' && (
                         <div className="mt-1 w-2 h-2 bg-blue-500 rounded-full"></div>
                       )}
@@ -139,7 +139,7 @@ const SettingsView: React.FC<SettingsViewProps> = ({ onBack, purchasedThemes, cu
                   >
                     <div className="flex flex-col items-center">
                       <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-gray-700 via-gray-800 to-gray-900 mb-2"></div>
-                      <span className="text-xs font-semibold text-gray-700">Escuro</span>
+                      <span className="text-xs font-semibold theme-text-primary">Escuro</span>
                       {currentTheme === 'dark' && (
                         <div className="mt-1 w-2 h-2 bg-gray-700 rounded-full"></div>
                       )}
@@ -152,19 +152,19 @@ const SettingsView: React.FC<SettingsViewProps> = ({ onBack, purchasedThemes, cu
         )}
 
         {/* About Section */}
-        <div className="bg-white rounded-lg shadow-md p-4">
-          <h3 className="font-semibold text-gray-800 mb-3">Sobre</h3>
-          <div className="space-y-2 text-sm text-gray-600">
+        <div className="theme-bg-card rounded-lg shadow-md p-4">
+          <h3 className="font-semibold theme-text-primary mb-3">Sobre</h3>
+          <div className="space-y-2 text-sm theme-text-secondary">
             <p>LevelDay v1.0.0</p>
             <p>Gerencie suas tarefas e organize seu dia!</p>
           </div>
         </div>
 
         {/* Support Section */}
-        <div className="bg-white rounded-lg shadow-md p-4">
-          <h3 className="font-semibold text-gray-800 mb-3">Suporte</h3>
+        <div className="theme-bg-card rounded-lg shadow-md p-4">
+          <h3 className="font-semibold theme-text-primary mb-3">Suporte</h3>
           <div className="space-y-2">
-            <button className="w-full text-left py-2 text-gray-700 hover:text-[#f08436] transition-colors">
+            <button className="w-full text-left py-2 theme-text-primary hover:opacity-80 transition-colors">
               Ajuda e FAQ
             </button>
             <button className="w-full text-left py-2 text-gray-700 hover:text-[#f08436] transition-colors">

@@ -159,7 +159,7 @@ const AgendaView: React.FC<AgendaViewProps> = ({
   const totalHeight = (DAY_END_HOUR - DAY_START_HOUR + 1) * 60;
 
   const timeColumnHTML = (
-    <div className="w-20 text-right pr-2 border-r border-yellow-600 relative" style={{ height: `${totalHeight}px` }}>
+    <div className="w-20 text-right pr-2 border-r theme-border-dark relative" style={{ height: `${totalHeight}px` }}>
       {hours.map((hour, index) => (
         <div 
           key={hour} 
@@ -171,7 +171,7 @@ const AgendaView: React.FC<AgendaViewProps> = ({
             height: '0px'
           }}
         >
-          <span className="text-xs text-yellow-900 font-medium">
+            <span className="text-xs theme-text-primary font-medium">
             {String(hour).padStart(2, '0')}:00
           </span>
         </div>
@@ -185,7 +185,7 @@ const AgendaView: React.FC<AgendaViewProps> = ({
       {[...hours, DAY_END_HOUR].map((hour, index) => (
         <div 
           key={`line-${hour}-${index}`} 
-          className="absolute left-0 right-0 border-b border-yellow-600 z-0"
+          className="absolute left-0 right-0 border-b theme-border-dark z-0"
           style={{ 
             top: `${index * 60}px`,
             height: '1px',
@@ -229,14 +229,14 @@ const AgendaView: React.FC<AgendaViewProps> = ({
 
   return (
     <div 
-      className="h-full overflow-y-auto no-scrollbar bg-[#f9c751] relative"
+      className="h-full overflow-y-auto no-scrollbar theme-bg-main relative"
       ref={containerRef}
       onTouchStart={onTouchStart}
       onTouchMove={onTouchMove}
       onTouchEnd={onTouchEnd}
     >
       {!isToday && (
-        <div className="absolute top-2 left-1/2 transform -translate-x-1/2 z-20 bg-[#f08436] text-white px-4 py-1 rounded-full text-xs font-semibold shadow-lg">
+        <div className="absolute top-2 left-1/2 transform -translate-x-1/2 z-20 theme-primary theme-text-light px-4 py-1 rounded-full text-xs font-semibold shadow-lg">
           {currentDate < today ? 'Dia anterior' : 'Dia futuro'}
         </div>
       )}
@@ -262,8 +262,8 @@ const AgendaView: React.FC<AgendaViewProps> = ({
         
         return (
         <div className="fixed inset-0 bg-black bg-opacity-60 z-50 flex justify-center items-center p-4">
-          <div className="bg-white text-gray-800 rounded-lg shadow-xl w-full max-w-sm flex flex-col" onClick={(e) => e.stopPropagation()}>
-            <div className="relative bg-[#f08436] text-gray-100 rounded-t-lg p-4 h-16 flex items-center">
+          <div className="theme-bg-card theme-text-primary rounded-lg shadow-xl w-full max-w-sm flex flex-col" onClick={(e) => e.stopPropagation()}>
+            <div className="relative theme-primary theme-text-light rounded-t-lg p-4 h-16 flex items-center">
               <h2 className="text-lg font-semibold w-2/3 truncate">{selectedTask.title}</h2>
               <div className={`absolute right-0 top-0 h-full w-20 ${tagColor} flex items-center justify-center task-priority-shape`}>
                 <span className={`${tagTextColor} text-3xl font-bold`}>{selectedTask.tag}</span>
@@ -271,20 +271,20 @@ const AgendaView: React.FC<AgendaViewProps> = ({
             </div>
             <div className="p-5 space-y-4">
               <div>
-                <label className="text-xs uppercase tracking-wider text-gray-500">Horário</label>
-                <p className="text-lg mt-1">
+                <label className="text-xs uppercase tracking-wider theme-text-secondary">Horário</label>
+                <p className="text-lg mt-1 theme-text-primary">
                   {String(selectedTask.startHour).padStart(2, '0')}:{String(selectedTask.startMinute).padStart(2, '0')} - {String(selectedTask.endHour).padStart(2, '0')}:{String(selectedTask.endMinute).padStart(2, '0')}
                 </p>
               </div>
               {selectedTask.description && (
                 <div>
-                  <label className="text-xs uppercase tracking-wider text-gray-500">Descrição</label>
-                  <p className="text-base mt-1 bg-gray-100 p-2 rounded-md border border-gray-200">{selectedTask.description}</p>
+                  <label className="text-xs uppercase tracking-wider theme-text-secondary">Descrição</label>
+                  <p className="text-base mt-1 theme-bg-container p-2 rounded-md border theme-border theme-text-primary">{selectedTask.description}</p>
                 </div>
               )}
               
-              <div className="flex justify-between items-center pt-4 mt-4 border-t border-gray-100">
-                <div className="flex items-center text-sm text-gray-500">
+              <div className="flex justify-between items-center pt-4 mt-4 border-t theme-border">
+                <div className="flex items-center text-sm theme-text-secondary">
                   <span>Recompensa:</span>
                   <div className="flex items-center ml-2 text-[#f08436] font-bold">
                     <div className="w-5 h-5 bg-[#f9c751] border-2 border-[#e4a82e] rounded-full flex items-center justify-center text-black font-bold text-xs mr-1">S</div>
@@ -292,11 +292,11 @@ const AgendaView: React.FC<AgendaViewProps> = ({
                   </div>
                 </div>
                 <div className="flex gap-2">
-                  <button onClick={handleCloseModal} className="px-4 py-2 rounded-md text-gray-600 hover:bg-gray-100 transition-colors">
+                  <button onClick={handleCloseModal} className="px-4 py-2 rounded-md theme-text-secondary hover:theme-bg-container transition-colors">
                     Fechar
                   </button>
                   {!selectedTask.completed ? (
-                    <button onClick={handleCompleteTask} className="px-4 py-2 rounded-md bg-[#1eae89] hover:bg-[#189a79] text-white font-bold transition-colors shadow-sm">
+                    <button onClick={handleCompleteTask} className="px-4 py-2 rounded-md theme-success hover:opacity-90 theme-text-light font-bold transition-colors shadow-sm">
                       CONCLUIR
                     </button>
                   ) : (
