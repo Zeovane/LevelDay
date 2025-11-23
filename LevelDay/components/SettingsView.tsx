@@ -70,35 +70,6 @@ const SettingsView: React.FC<SettingsViewProps> = ({ onBack }) => {
           </div>
         </div>
 
-        {/* Dark Mode Settings */}
-        <div className="bg-white rounded-lg shadow-md p-4">
-          <div className="flex items-center justify-between mb-4">
-            <div className="flex items-center">
-              <div className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center mr-3">
-                <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
-                </svg>
-              </div>
-              <div>
-                <h3 className="font-semibold text-gray-800">Modo Escuro</h3>
-                <p className="text-sm text-gray-500">Ativar tema escuro</p>
-              </div>
-            </div>
-            <button
-              onClick={() => setDarkMode(!darkMode)}
-              className={`relative w-12 h-6 rounded-full transition-colors ${
-                darkMode ? 'bg-[#1eae89]' : 'bg-gray-300'
-              }`}
-            >
-              <div
-                className={`absolute top-1 left-1 w-4 h-4 bg-white rounded-full transition-transform ${
-                  darkMode ? 'transform translate-x-6' : ''
-                }`}
-              ></div>
-            </button>
-          </div>
-        </div>
-
         {/* About Section */}
         <div className="bg-white rounded-lg shadow-md p-4">
           <h3 className="font-semibold text-gray-800 mb-3">Sobre</h3>

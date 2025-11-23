@@ -8,10 +8,12 @@ import ProfileView from './components/ProfileView';
 import StoreView from './components/StoreView';
 import SettingsView from './components/SettingsView';
 import CalendarModal from './components/CalendarModal';
+import LoginView from './components/LoginView';
 import { Task, Note, Annotation } from './types';
 import './style.css';
 
 const App: React.FC = () => {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [activeTab, setActiveTab] = useState<'Perfil' | 'Agenda' | 'Loja'>('Agenda');
   const [currentPage, setCurrentPage] = useState<'perfil' | 'settings' | 'agenda' | 'notes' | 'noteDetail' | 'loja'>('agenda');
   const [notes, setNotes] = useState<Note[]>([
@@ -161,6 +163,11 @@ const App: React.FC = () => {
         </div>;
     }
   };
+
+  // Show login screen if not logged in
+  if (!isLoggedIn) {
+    return <LoginView onLogin={() => setIsLoggedIn(true)} />;
+  }
 
   return (
     <div className="app-container bg-gray-50 shadow-2xl rounded-3xl overflow-hidden flex flex-col relative mx-auto">

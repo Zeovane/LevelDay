@@ -81,7 +81,7 @@ const NoteDetailView: React.FC<NoteDetailViewProps> = ({
   );
 
   return (
-    <div className="bg-[#f9c751] h-full flex flex-col relative">
+    <div className="theme-bg-main h-full flex flex-col relative">
       <div className="flex-grow overflow-y-auto no-scrollbar p-6 pb-24">
         {annotationsHTML}
       </div>
@@ -99,7 +99,7 @@ const NoteDetailView: React.FC<NoteDetailViewProps> = ({
           {newAnnotationText.trim() && (
             <button
               onClick={handleAddAnnotation}
-              className="px-4 py-2 bg-[#1eae89] text-white rounded-lg hover:bg-[#189a79] transition-colors"
+                className="px-4 py-2 theme-success theme-text-light rounded-lg hover:theme-success-dark transition-colors"
             >
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
@@ -114,7 +114,7 @@ const NoteDetailView: React.FC<NoteDetailViewProps> = ({
         <div className="fixed inset-0 bg-black bg-opacity-60 z-40 flex justify-center items-center p-4">
           <div className="bg-white text-gray-800 rounded-lg shadow-xl w-full max-w-sm p-5 flex flex-col gap-4" onClick={(e) => e.stopPropagation()}>
             {/* Header */}
-            <div className="relative bg-[#f08436] -m-5 mb-0 rounded-t-lg p-4 h-16 flex items-center">
+            <div className="relative theme-primary theme-text-light -m-5 mb-0 rounded-t-lg p-4 h-16 flex items-center">
               <input
                 type="text"
                 value={selectedAnnotation.text}
@@ -122,7 +122,7 @@ const NoteDetailView: React.FC<NoteDetailViewProps> = ({
                 className="bg-transparent text-lg font-semibold text-gray-100 placeholder-gray-400 focus:outline-none w-2/3"
                 placeholder="Título da Tarefa"
               />
-              <div className="absolute right-0 top-0 h-full w-20 bg-[#1eae89] flex items-center justify-center task-priority-shape">
+              <div className="absolute right-0 top-0 h-full w-20 theme-success flex items-center justify-center task-priority-shape">
                 <span className="text-white text-3xl font-bold">{selectedAnnotation.tag || 'A'}</span>
               </div>
             </div>
@@ -205,9 +205,9 @@ const NoteDetailView: React.FC<NoteDetailViewProps> = ({
                     onClick={() => setSelectedAnnotation({ ...selectedAnnotation, tag: priority })}
                     className={`py-2 rounded-md text-lg font-bold transition-colors ${
                       selectedAnnotation.tag === priority
-                        ? priority === 'A' ? 'bg-[#f9c751] text-black' 
-                          : priority === 'B' ? 'bg-[#f08436] text-white'
-                          : 'bg-[#ed6b2d] text-white'
+                        ? priority === 'A' ? 'bg-red-500 text-white' 
+                          : priority === 'B' ? 'bg-[#f9c751] text-black'
+                          : 'bg-[#1eae89] text-white'
                         : 'bg-gray-200 hover:bg-gray-300'
                     }`}
                   >
@@ -227,7 +227,7 @@ const NoteDetailView: React.FC<NoteDetailViewProps> = ({
               </button>
               <button
                 onClick={handleScheduleAnnotation}
-                className="px-4 py-2 rounded-md bg-[#1eae89] hover:bg-[#189a79] text-white font-semibold transition-colors"
+                className="px-4 py-2 rounded-md theme-success hover:theme-success-dark theme-text-light font-semibold transition-colors"
               >
                 Enviar para Agenda
               </button>

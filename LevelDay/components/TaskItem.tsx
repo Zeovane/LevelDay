@@ -9,9 +9,9 @@ interface TaskItemProps {
 
 const TaskItem: React.FC<TaskItemProps> = ({ task, style, onClick }) => {
   const tagColors: { [key: string]: string } = {
-    'A': 'bg-[#f9c751]',
-    'B': 'bg-[#f08436]',
-    'C': 'bg-[#ed6b2d]',
+    'A': 'bg-red-500',
+    'B': 'bg-[#f9c751]',
+    'C': 'bg-[#1eae89]',
   };
 
   const tagColor = tagColors[task.tag] || 'bg-gray-400';

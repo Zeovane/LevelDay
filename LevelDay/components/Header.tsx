@@ -72,10 +72,10 @@ const Header: React.FC<HeaderProps> = ({
       }
     } else if (activeTab === 'Loja') {
       return (
-        <div className={baseHeaderClasses}>
+        <div className={baseHeaderClasses} style={headerStyle}>
           <h1 className="text-3xl font-light tracking-wider text-gray-100">LOJA</h1>
           <div className="flex items-center space-x-4">
-            <div className="flex items-center bg-black bg-opacity-20 rounded-full px-3 py-1 border border-orange-500">
+            <div className="flex items-center bg-black bg-opacity-20 rounded-full px-3 py-1 border theme-border-dark">
               <div className="w-5 h-5 bg-[#f9c751] border-2 border-[#e4a82e] rounded-full flex items-center justify-center text-black font-bold text-xs mr-1">S</div>
               <span className="font-semibold ml-1 text-gray-100">{userCoins}</span>
             </div>

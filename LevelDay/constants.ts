@@ -11,9 +11,9 @@ export const DAY_NAMES = [
 ];
 
 export const TAG_COLORS = {
-  'A': 'bg-[#f9c751]',
-  'B': 'bg-[#f08436]',
-  'C': 'bg-[#ed6b2d]',
+  'A': 'bg-red-500',
+  'B': 'bg-[#f9c751]',
+  'C': 'bg-[#1eae89]',
 };
 
 export const INITIAL_USER_COINS = 1250;

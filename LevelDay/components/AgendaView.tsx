@@ -171,15 +171,25 @@ const AgendaView: React.FC<AgendaViewProps> = ({
     </div>
   );
 
+  const totalHeight = (DAY_END_HOUR - DAY_START_HOUR + 1) * 60;
+  
   const scheduleGrid = (
-    <div className="flex-1 relative">
-      {/* Horizontal lines */}
+    <div className="flex-1 relative" style={{ height: `${totalHeight}px`, minHeight: `${totalHeight}px` }}>
+      {/* Horizontal lines - renderizadas como elementos separados para garantir que todas se estendam completamente */}
       {[...hours, DAY_END_HOUR].map((hour, index) => (
-        <div key={`line-${hour}-${index}`} className="h-[60px] border-b border-yellow-600"></div>
+        <div 
+          key={`line-${hour}-${index}`} 
+          className="absolute left-0 right-0 border-b border-yellow-600 z-0"
+          style={{ 
+            top: `${index * 60}px`,
+            height: '1px',
+            width: '100%'
+          }}
+        ></div>
       ))}
       
       {/* Tasks */}
-      <div className="absolute top-0 left-0 right-0 bottom-0">
+      <div className="absolute top-0 left-0 right-0 z-10" style={{ height: `${totalHeight}px` }}>
         {laidOutTasks.map(task => {
           const startOffsetMinutes = (task.startHour - DAY_START_HOUR) * 60 + task.startMinute;
           const durationMinutes = (task.endHour * 60 + task.endMinute) - (task.startHour * 60 + task.startMinute);
@@ -224,19 +234,33 @@ const AgendaView: React.FC<AgendaViewProps> = ({
           {currentDate < today ? 'Dia anterior' : 'Dia futuro'}
         </div>
       )}
-      <div className="flex h-full">
+      <div className="flex" style={{ minHeight: `${(DAY_END_HOUR - DAY_START_HOUR + 1) * 60}px` }}>
         {timeColumnHTML}
         {scheduleGrid}
       </div>
 
       {/* Task Detail Modal */}
-      {selectedTask && (
+      {selectedTask && (() => {
+        const tagColorMap: { [key: string]: string } = {
+          'A': 'bg-red-500',
+          'B': 'bg-[#f9c751]',
+          'C': 'bg-[#1eae89]',
+        };
+        const tagTextColorMap: { [key: string]: string } = {
+          'A': 'text-white',
+          'B': 'text-black',
+          'C': 'text-white',
+        };
+        const tagColor = tagColorMap[selectedTask.tag] || 'bg-gray-500';
+        const tagTextColor = tagTextColorMap[selectedTask.tag] || 'text-white';
+        
+        return (
         <div className="fixed inset-0 bg-black bg-opacity-60 z-50 flex justify-center items-center p-4">
           <div className="bg-white text-gray-800 rounded-lg shadow-xl w-full max-w-sm flex flex-col" onClick={(e) => e.stopPropagation()}>
             <div className="relative bg-[#f08436] text-gray-100 rounded-t-lg p-4 h-16 flex items-center">
               <h2 className="text-lg font-semibold w-2/3 truncate">{selectedTask.title}</h2>
-              <div className="absolute right-0 top-0 h-full w-20 bg-[#1eae89] flex items-center justify-center task-priority-shape">
-                <span className="text-white text-3xl font-bold">{selectedTask.tag}</span>
+              <div className={`absolute right-0 top-0 h-full w-20 ${tagColor} flex items-center justify-center task-priority-shape`}>
+                <span className={`${tagTextColor} text-3xl font-bold`}>{selectedTask.tag}</span>
               </div>
             </div>
             <div className="p-5 space-y-4">
@@ -279,7 +303,8 @@ const AgendaView: React.FC<AgendaViewProps> = ({
             </div>
           </div>
         </div>
-      )}
+        );
+      })()}
 
       {/* Task Completion Animation */}
       <TaskCompletionAnimation

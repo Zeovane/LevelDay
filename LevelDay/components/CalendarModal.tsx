@@ -103,7 +103,7 @@ const CalendarModal: React.FC<CalendarModalProps> = ({
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header */}
-        <div className="bg-[#f08436] text-white p-4 flex items-center justify-between">
+        <div className="theme-primary theme-text-light p-4 flex items-center justify-between">
           <button
             onClick={handlePreviousMonth}
             className="text-white hover:text-orange-200 transition-colors p-1"
@@ -177,7 +177,7 @@ const CalendarModal: React.FC<CalendarModalProps> = ({
         <div className="p-4 bg-gray-50 border-t border-gray-200 flex justify-between items-center">
           <button
             onClick={handleToday}
-            className="px-4 py-2 bg-[#1eae89] hover:bg-[#189a79] text-white rounded-lg font-semibold transition-colors"
+            className="px-4 py-2 theme-success hover:theme-success-dark theme-text-light rounded-lg font-semibold transition-colors"
           >
             Hoje
           </button>
