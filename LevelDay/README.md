@@ -1,20 +1,66 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+# LevelDay - Agenda App
 
-# Run and deploy your AI Studio app
+Um aplicativo de agenda moderno e intuitivo construído com React e TypeScript.
 
-This contains everything you need to run your app locally.
+## 🚀 Funcionalidades
 
-View your app in AI Studio: https://ai.studio/apps/drive/1OLJ2HJ-mFpVlQM2-hSolr-EgNr_vqgbP
+- ✅ Visualização de agenda com layout de tarefas inteligente
+- 📝 Sistema de notas com anotações
+- 🎯 Agendamento de anotações como tarefas
+- 🏆 Sistema de gamificação com moedas e XP
+- 📱 Design responsivo mobile-first
+- 🎨 Interface moderna com animações suaves
 
-## Run Locally
+## 🛠️ Tecnologias
 
-**Prerequisites:**  Node.js
+- React 18
+- TypeScript
+- Vite
+- Tailwind CSS
+- CSS Animations
 
+## 📦 Instalação
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+1. Clone o repositório:
+```bash
+git clone <repository-url>
+cd LevelDay
+```
+
+2. Instale as dependências:
+```bash
+npm install
+```
+
+3. Execute o projeto:
+```bash
+npm run dev
+```
+
+4. Abra o navegador em `http://localhost:3000`
+
+## 🏗️ Build para Produção
+
+```bash
+npm run build
+```
+
+## 🎮 Como Usar
+
+1. **Agenda**: Visualize suas tarefas organizadas por horário
+2. **Notas**: Crie e gerencie suas anotações
+3. **Agendamento**: Transforme anotações em tarefas agendadas
+4. **Gamificação**: Complete tarefas para ganhar moedas e XP
+
+## 🐛 Correções Implementadas
+
+- ✅ Migração de JavaScript vanilla para React
+- ✅ Implementação de componentes TypeScript
+- ✅ Correção de problemas de layout e responsividade
+- ✅ Melhoria das animações e transições
+- ✅ Correção de bugs de navegação
+- ✅ Otimização da estrutura de arquivos
+- ✅ Implementação de sistema de ícones reutilizáveis
+- ✅ Correção de problemas de modal e overlay
+- ✅ Melhoria da experiência do usuário
+- ✅ Implementação de componentes modulares

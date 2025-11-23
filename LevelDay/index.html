@@ -9,81 +9,9 @@
     <link rel="stylesheet" href="/style.css" />
   <link rel="stylesheet" href="/index.css">
 </head>
-  <body class="bg-gray-100 flex justify-center items-center min-h-screen p-4">
-    <div class="w-[393px] h-[852px] bg-gray-50 shadow-2xl rounded-3xl overflow-hidden flex flex-col relative">
-      
-      <!-- Login View -->
-      <div id="login-view" class="w-full h-full bg-[#343478] text-gray-100 flex flex-col justify-between p-8">
-          <div class="flex-grow flex flex-col justify-center items-center text-center">
-              <div id="login-icon-placeholder" class="mb-6">
-                <!-- Icon will be inserted by JS -->
-              </div>
-              <h1 class="text-3xl font-light tracking-wider mb-2">Bem-vindo(a)</h1>
-              <p class="text-gray-400 font-light mb-8">Entre para continuar</p>
-              
-              <form class="w-full max-w-xs space-y-4">
-                  <input type="email" placeholder="Email" class="w-full bg-slate-700 border border-slate-600 rounded-lg p-3 focus:ring-2 focus:ring-[#1eae89] focus:outline-none placeholder-gray-400 text-gray-100">
-                  <input type="password" placeholder="Senha" class="w-full bg-slate-700 border border-slate-600 rounded-lg p-3 focus:ring-2 focus:ring-[#1eae89] focus:outline-none placeholder-gray-400 text-gray-100">
-                  <button id="login-btn" class="w-full bg-[#1eae89] hover:bg-[#189a79] text-white font-bold py-3 rounded-lg transition-colors">ENTRAR</button>
-              </form>
-              <a href="#" class="text-sm text-gray-400 hover:text-gray-200 mt-4">Esqueceu a senha?</a>
+  <body>
+    <div id="root"></div>
 
-              <div class="flex items-center w-full max-w-xs my-6">
-                  <div class="flex-grow border-t border-gray-600"></div>
-                  <span class="flex-shrink mx-4 text-gray-500 text-sm">OU</span>
-                  <div class="flex-grow border-t border-gray-600"></div>
-              </div>
-              
-              <div id="social-login-placeholder" class="w-full max-w-xs space-y-3">
-                  <!-- Social buttons will be inserted by JS -->
-              </div>
-          </div>
-          <div class="text-center pb-4">
-              <p class="text-sm text-gray-400">Não tem uma conta? <a href="#" class="font-semibold text-[#85cd39] hover:underline">CRIAR CONTA</a></p>
-          </div>
-      </div>
-      
-      <!-- App Container -->
-      <div id="app-container" class="hidden w-full h-full flex flex-col">
-        <header id="app-header" class="h-[68px] shrink-0"></header>
-        
-        <main class="flex-grow overflow-hidden bg-gray-50">
-          <!-- Perfil View -->
-          <div id="perfil-view" class="view hidden h-full overflow-y-auto no-scrollbar draggable-scroll-vertical cursor-grab"></div>
-          
-          <!-- Settings View -->
-          <div id="settings-view" class="view hidden h-full overflow-y-auto no-scrollbar"></div>
-
-          <!-- Agenda View -->
-          <div id="agenda-view" class="view h-full overflow-y-auto no-scrollbar draggable-scroll-vertical cursor-grab"></div>
-  
-          <!-- Notes View -->
-          <div id="notes-view" class="view hidden h-full overflow-y-auto no-scrollbar draggable-scroll-vertical cursor-grab"></div>
-  
-          <!-- Note Detail View -->
-          <div id="note-detail-view" class="view hidden h-full overflow-hidden"></div>
-  
-          <!-- Loja View -->
-          <div id="loja-view" class="view hidden h-full overflow-y-auto no-scrollbar draggable-scroll-vertical cursor-grab"></div>
-        </main>
-        
-        <footer id="app-footer" class="shrink-0 h-[56px]"></footer>
-  
-        <!-- Floating Action Button -->
-        <button id="fab" style="bottom: 70px; right: 1.5rem;" class="absolute w-14 h-14 bg-[#85cd39] rounded-full shadow-lg flex items-center justify-center text-white hover:bg-[#6aa82d] transition-colors z-10" aria-label="Open Notes">
-          <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-            <path d="M2 3a1 1 0 011-1h1.5a1 1 0 010 2H3a1 1 0 01-1-1zM2 6a1 1 0 011-1h1.5a1 1 0 110 2H3a1 1 0 01-1-1zM2 9a1 1 0 011-1h1.5a1 1 0 110 2H3a1 1 0 01-1-1zM5 2h10a1 1 0 011 1v14a1 1 0 01-1 1H5a1 1 0 01-1-1V3a1 1 0 011-1zm1 2v2h8V4H6zm0 4v2h8V8H6zm0 4v2h5v-2H6z"/>
-          </svg>
-        </button>
-  
-        <!-- Annotation Detail Modal placeholder -->
-        <div id="annotation-detail-modal"></div>
-        <!-- Calendar Modal placeholder -->
-        <div id="calendar-modal"></div>
-        <!-- Task Detail Modal placeholder -->
-        <div id="task-detail-modal"></div>
-      </div>
-    </div>
     <script type="module" src="/index.tsx"></script>
   </body>
 </html>
