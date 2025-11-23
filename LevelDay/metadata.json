@@ -1,0 +1,5 @@
+{
+  "name": "Agenda App",
+  "description": "A daily agenda application to manage and visualize tasks in a timeline view, inspired by a mobile UI mockup.",
+  "requestFramePermissions": []
+}
