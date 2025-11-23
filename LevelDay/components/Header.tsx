@@ -57,7 +57,7 @@ const Header: React.FC<HeaderProps> = ({
             <h1 className="text-3xl font-light tracking-wider theme-text-light">PERFIL</h1>
             <div className="flex items-center space-x-4">
               <div className="flex items-center bg-black bg-opacity-20 rounded-full px-3 py-1 border border-orange-500">
-                <div className="w-5 h-5 bg-[#f9c751] border-2 border-[#e4a82e] rounded-full flex items-center justify-center text-black font-bold text-xs mr-1">S</div>
+                <div className="w-5 h-5 rounded-full flex items-center justify-center font-bold text-xs mr-1" style={{ backgroundColor: 'var(--coin-bg)', border: '2px solid var(--coin-border)', color: 'var(--coin-text)' }}>S</div>
                 <span className="font-semibold ml-1 theme-text-light">{userCoins}</span>
               </div>
               <button onClick={onSettingsOpen}>

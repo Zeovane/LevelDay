@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
+import PurchaseAnimation from './PurchaseAnimation';
 
 interface StoreViewProps {
   userCoins: number;
@@ -16,6 +17,8 @@ interface StoreItem {
 }
 
 const StoreView: React.FC<StoreViewProps> = ({ userCoins, purchasedThemes, onPurchase }) => {
+  const [showPurchaseAnimation, setShowPurchaseAnimation] = useState(false);
+  const [purchasedItem, setPurchasedItem] = useState<{ name: string; icon: string; cost: number } | null>(null);
   const storeItems: StoreItem[] = [
     {
       id: 1,
@@ -78,11 +81,20 @@ const StoreView: React.FC<StoreViewProps> = ({ userCoins, purchasedThemes, onPur
     }
 
     if (userCoins >= item.cost) {
-      if (onPurchase) {
-        onPurchase(item.id, item.cost, item.name);
-      } else {
-        alert(`Você comprou ${item.name} por ${item.cost} moedas!`);
-      }
+      // Show purchase animation
+      setPurchasedItem({
+        name: item.name,
+        icon: item.icon,
+        cost: item.cost
+      });
+      setShowPurchaseAnimation(true);
+      
+      // Call onPurchase callback after a short delay to allow animation to start
+      setTimeout(() => {
+        if (onPurchase) {
+          onPurchase(item.id, item.cost, item.name);
+        }
+      }, 100);
     } else {
       alert(`Você precisa de ${item.cost} moedas para comprar este item. Você tem ${userCoins} moedas.`);
     }
@@ -110,8 +122,8 @@ const StoreView: React.FC<StoreViewProps> = ({ userCoins, purchasedThemes, onPur
           <p className="theme-text-secondary text-sm">Personalize sua experiência</p>
           <div className="mt-4 flex items-center justify-center">
             <div className="flex items-center theme-secondary border-2 theme-border-dark rounded-full px-4 py-2">
-              <div className="w-6 h-6 theme-secondary border-2 theme-border-dark rounded-full flex items-center justify-center mr-2">
-                <span className="theme-text-primary font-bold text-xs">S</span>
+              <div className="w-6 h-6 rounded-full flex items-center justify-center mr-2 border-2" style={{ backgroundColor: 'var(--coin-bg)', borderColor: 'var(--coin-border)', color: 'var(--coin-text)' }}>
+                <span className="font-bold text-xs">S</span>
               </div>
               <span className="font-bold text-lg theme-text-primary">{userCoins.toLocaleString()}</span>
             </div>
@@ -139,8 +151,8 @@ const StoreView: React.FC<StoreViewProps> = ({ userCoins, purchasedThemes, onPur
                   
                   <div className="flex items-center justify-center mb-3">
                     <div className="flex items-center theme-secondary border theme-border-dark rounded-full px-3 py-1">
-                      <div className="w-4 h-4 theme-secondary border theme-border-dark rounded-full flex items-center justify-center mr-1">
-                        <span className="theme-text-primary font-bold text-[10px]">S</span>
+                      <div className="w-4 h-4 rounded-full flex items-center justify-center mr-1" style={{ backgroundColor: 'var(--coin-bg)', border: '2px solid var(--coin-border)', color: 'var(--coin-text)' }}>
+                        <span className="font-bold text-[10px]">S</span>
                       </div>
                       <span className={`font-bold text-sm ${canAfford ? 'theme-text-primary' : 'theme-text-secondary'}`}>
                         {item.cost}
@@ -184,6 +196,20 @@ const StoreView: React.FC<StoreViewProps> = ({ userCoins, purchasedThemes, onPur
           </div>
         </div>
       </div>
+
+      {/* Purchase Animation */}
+      {purchasedItem && (
+        <PurchaseAnimation
+          isVisible={showPurchaseAnimation}
+          onComplete={() => {
+            setShowPurchaseAnimation(false);
+            setPurchasedItem(null);
+          }}
+          itemName={purchasedItem.name}
+          itemIcon={purchasedItem.icon}
+          cost={purchasedItem.cost}
+        />
+      )}
     </div>
   );
 };

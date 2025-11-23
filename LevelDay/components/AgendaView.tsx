@@ -287,7 +287,7 @@ const AgendaView: React.FC<AgendaViewProps> = ({
                 <div className="flex items-center text-sm theme-text-secondary">
                   <span>Recompensa:</span>
                   <div className="flex items-center ml-2 text-[#f08436] font-bold">
-                    <div className="w-5 h-5 bg-[#f9c751] border-2 border-[#e4a82e] rounded-full flex items-center justify-center text-black font-bold text-xs mr-1">S</div>
+                    <div className="w-5 h-5 rounded-full flex items-center justify-center font-bold text-xs mr-1" style={{ backgroundColor: 'var(--coin-bg)', border: '2px solid var(--coin-border)', color: 'var(--coin-text)' }}>S</div>
                     +50
                   </div>
                 </div>

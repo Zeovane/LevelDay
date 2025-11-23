@@ -35,8 +35,8 @@ const ProfileView: React.FC<ProfileViewProps> = ({ userCoins, userXP }) => {
           {/* Coins Card */}
           <div className="theme-bg-card rounded-lg shadow-md p-4">
             <div className="flex items-center justify-center mb-2">
-              <div className="w-12 h-12 theme-secondary border-2 theme-border-dark rounded-full flex items-center justify-center">
-                <span className="theme-text-primary font-bold text-lg">S</span>
+              <div className="w-12 h-12 rounded-full flex items-center justify-center border-2" style={{ backgroundColor: 'var(--coin-bg)', borderColor: 'var(--coin-border)', color: 'var(--coin-text)' }}>
+                <span className="font-bold text-lg">S</span>
               </div>
             </div>
             <p className="text-center text-sm theme-text-secondary mb-1">Moedas</p>

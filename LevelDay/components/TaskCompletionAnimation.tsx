@@ -115,8 +115,8 @@ const TaskCompletionAnimation: React.FC<TaskCompletionAnimationProps> = ({
           }}
         >
           <div className="flex items-center justify-center bg-[#f9c751] bg-opacity-20 rounded-lg p-3">
-            <div className="w-8 h-8 bg-[#f9c751] border-2 border-[#e4a82e] rounded-full flex items-center justify-center mr-3">
-              <span className="text-black font-bold text-sm">S</span>
+            <div className="w-8 h-8 rounded-full flex items-center justify-center mr-3 border-2" style={{ backgroundColor: 'var(--coin-bg)', borderColor: 'var(--coin-border)', color: 'var(--coin-text)' }}>
+              <span className="font-bold text-sm">S</span>
             </div>
             <div>
               <p className="text-xs text-gray-600">Moedas ganhas</p>

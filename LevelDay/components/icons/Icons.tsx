@@ -50,7 +50,7 @@ export const ShoppingBagIcon: React.FC<{ className?: string }> = ({ className = 
 );
 
 export const CoinIcon: React.FC<{ className?: string }> = ({ className = "w-5 h-5" }) => (
-  <div className={`${className} bg-[#f9c751] border-2 border-[#e4a82e] rounded-full flex items-center justify-center text-black font-bold text-xs`}>
+  <div className={`${className} rounded-full flex items-center justify-center border-2 font-bold text-xs`} style={{ backgroundColor: 'var(--coin-bg)', borderColor: 'var(--coin-border)', color: 'var(--coin-text)' }}>
     S
   </div>
 );
