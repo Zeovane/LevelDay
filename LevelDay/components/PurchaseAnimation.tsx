@@ -31,7 +31,7 @@ const PurchaseAnimation: React.FC<PurchaseAnimationProps> = ({
       // Auto-close after animation
       const timer = setTimeout(() => {
         onComplete();
-      }, 3000);
+      }, 2000);
 
       return () => clearTimeout(timer);
     } else {
