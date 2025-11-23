@@ -156,22 +156,28 @@ const AgendaView: React.FC<AgendaViewProps> = ({
     }
   };
 
+  const totalHeight = (DAY_END_HOUR - DAY_START_HOUR + 1) * 60;
+
   const timeColumnHTML = (
-    <div className="w-20 text-right pr-2 pt-2 border-r border-yellow-600">
-      <div className="flex flex-col h-full pt-4">
-        {hours.map(hour => (
-          <div key={hour} className="flex-1 -mt-px flex justify-end items-start" style={{ minHeight: '60px' }}>
-            <span className="text-xs text-yellow-900 font-medium transform -translate-y-1.5">
-              {String(hour).padStart(2, '0')}:00
-            </span>
-          </div>
-        ))}
-        <div className="flex-1 -mt-px flex justify-end items-start" style={{ minHeight: '60px' }}></div>
-      </div>
+    <div className="w-20 text-right pr-2 border-r border-yellow-600 relative" style={{ height: `${totalHeight}px` }}>
+      {hours.map((hour, index) => (
+        <div 
+          key={hour} 
+          className="absolute flex justify-end items-center pr-2" 
+          style={{ 
+            top: `${index * 60 + 30}px`,
+            transform: 'translateY(-50%)',
+            width: '100%',
+            height: '0px'
+          }}
+        >
+          <span className="text-xs text-yellow-900 font-medium">
+            {String(hour).padStart(2, '0')}:00
+          </span>
+        </div>
+      ))}
     </div>
   );
-
-  const totalHeight = (DAY_END_HOUR - DAY_START_HOUR + 1) * 60;
   
   const scheduleGrid = (
     <div className="flex-1 relative" style={{ height: `${totalHeight}px`, minHeight: `${totalHeight}px` }}>
@@ -193,8 +199,8 @@ const AgendaView: React.FC<AgendaViewProps> = ({
         {laidOutTasks.map(task => {
           const startOffsetMinutes = (task.startHour - DAY_START_HOUR) * 60 + task.startMinute;
           const durationMinutes = (task.endHour * 60 + task.endMinute) - (task.startHour * 60 + task.startMinute);
-          const topPercent = (startOffsetMinutes / totalMinutes) * 100;
-          const heightPercent = (durationMinutes / totalMinutes) * 100;
+          const topPixels = (startOffsetMinutes / 60) * 60;
+          const heightPixels = (durationMinutes / 60) * 60;
           
           const widthPercent = 100 / task.totalColumns;
           const leftPercent = task.column * widthPercent;
@@ -204,8 +210,8 @@ const AgendaView: React.FC<AgendaViewProps> = ({
               key={task.id}
               task={task}
               style={{
-                top: `calc(${topPercent}% + 2px)`,
-                height: `calc(${heightPercent}% - 4px)`,
+                top: `${topPixels}px`,
+                height: `${heightPixels}px`,
                 left: `calc(${leftPercent}% + 4px)`,
                 width: `calc(${widthPercent}% - 8px)`,
                 minHeight: '2rem'

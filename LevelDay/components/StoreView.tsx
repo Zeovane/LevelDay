@@ -92,8 +92,8 @@ const StoreView: React.FC<StoreViewProps> = ({ userCoins, onPurchase }) => {
   };
 
   return (
-    <div className="bg-[#f9c751] h-full overflow-y-auto no-scrollbar">
-      <div className="p-6 space-y-6">
+    <div className="bg-[#f9c751] w-full h-full overflow-y-auto no-scrollbar">
+      <div className="p-6 space-y-6 pb-20">
         {/* Store Header */}
         <div className="bg-white rounded-lg shadow-md p-6 text-center">
           <h2 className="text-2xl font-bold text-gray-800 mb-2">Loja</h2>

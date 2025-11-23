@@ -183,8 +183,10 @@ const App: React.FC = () => {
         onDateChange={setCurrentDate}
       />
       
-      <main className="flex-grow overflow-hidden bg-gray-50">
-        {renderCurrentView()}
+      <main className="flex-grow bg-gray-50 overflow-hidden flex flex-col">
+        <div className="flex-1 overflow-y-auto">
+          {renderCurrentView()}
+        </div>
       </main>
       
       <Footer 
