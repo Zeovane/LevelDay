@@ -175,3 +175,4 @@ const StoreView: React.FC<StoreViewProps> = ({ userCoins, onPurchase }) => {
 
 export default StoreView;
 
+

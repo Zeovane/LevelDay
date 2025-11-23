@@ -10,6 +10,7 @@ interface HeaderProps {
   onSettingsOpen: () => void;
   onSettingsClose: () => void;
   onCalendarOpen: () => void;
+  onDateChange?: (date: Date) => void;
 }
 
 const Header: React.FC<HeaderProps> = ({
@@ -20,7 +21,8 @@ const Header: React.FC<HeaderProps> = ({
   userCoins,
   onSettingsOpen,
   onSettingsClose,
-  onCalendarOpen
+  onCalendarOpen,
+  onDateChange
 }) => {
   const monthNames = ["JANEIRO", "FEVEREIRO", "MARÇO", "ABRIL", "MAIO", "JUNHO", 
                      "JULHO", "AGOSTO", "SETEMBRO", "OUTUBRO", "NOVEMBRO", "DEZEMBRO"];
@@ -119,13 +121,61 @@ const Header: React.FC<HeaderProps> = ({
         );
       } else { // Agenda
         const { day, month, dayOfWeek } = formatDate(currentDate);
+        const today = new Date();
+        const isToday = currentDate.toDateString() === today.toDateString();
+        
+        const handlePreviousDay = () => {
+          if (onDateChange) {
+            const newDate = new Date(currentDate);
+            newDate.setDate(newDate.getDate() - 1);
+            onDateChange(newDate);
+          }
+        };
+
+        const handleNextDay = () => {
+          if (onDateChange) {
+            const newDate = new Date(currentDate);
+            newDate.setDate(newDate.getDate() + 1);
+            onDateChange(newDate);
+          }
+        };
+
+        const handleToday = () => {
+          if (onDateChange) {
+            onDateChange(new Date());
+          }
+        };
+
         return (
           <div className={baseHeaderClasses}>
-            <div className="flex items-center">
-              <span className="text-5xl font-light text-gray-100">{String(day).padStart(2, '0')}</span>
-              <div className="ml-3">
-                <p className="text-sm font-semibold text-orange-200 tracking-wider">{month}, {dayOfWeek}</p>
+            <div className="flex items-center flex-1">
+              <button 
+                onClick={handlePreviousDay}
+                className="text-gray-200 hover:text-white mr-2 p-1 transition-colors"
+                aria-label="Dia anterior"
+              >
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7"></path>
+                </svg>
+              </button>
+              <div className="flex items-center cursor-pointer" onClick={handleToday}>
+                <span className="text-5xl font-light text-gray-100">{String(day).padStart(2, '0')}</span>
+                <div className="ml-3">
+                  <p className="text-sm font-semibold text-orange-200 tracking-wider">{month}, {dayOfWeek}</p>
+                  {!isToday && (
+                    <p className="text-xs text-orange-300 mt-0.5">Toque para hoje</p>
+                  )}
+                </div>
               </div>
+              <button 
+                onClick={handleNextDay}
+                className="text-gray-200 hover:text-white ml-2 p-1 transition-colors"
+                aria-label="Próximo dia"
+              >
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"></path>
+                </svg>
+              </button>
             </div>
             <div className="flex items-center space-x-4">
               <button className="text-gray-300 hover:text-white">

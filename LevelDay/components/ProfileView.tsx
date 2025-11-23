@@ -124,3 +124,4 @@ const ProfileView: React.FC<ProfileViewProps> = ({ userCoins, userXP }) => {
 
 export default ProfileView;
 
+

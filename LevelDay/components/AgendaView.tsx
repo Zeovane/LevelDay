@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { Task } from '../types';
 import TaskItem from './TaskItem';
+import TaskCompletionAnimation from './TaskCompletionAnimation';
 
 interface AgendaViewProps {
   tasks: Task[];
@@ -16,6 +17,13 @@ const AgendaView: React.FC<AgendaViewProps> = ({
   onTaskComplete 
 }) => {
   const [selectedTask, setSelectedTask] = useState<Task | null>(null);
+  const [touchStart, setTouchStart] = useState<number | null>(null);
+  const [touchEnd, setTouchEnd] = useState<number | null>(null);
+  const [showCompletionAnimation, setShowCompletionAnimation] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  // Minimum swipe distance (in pixels)
+  const minSwipeDistance = 50;
   
   const DAY_START_HOUR = 0;
   const DAY_END_HOUR = 24;
@@ -107,8 +115,44 @@ const AgendaView: React.FC<AgendaViewProps> = ({
 
   const handleCompleteTask = () => {
     if (selectedTask) {
+      setShowCompletionAnimation(true);
       onTaskComplete(selectedTask.id);
       setSelectedTask(null);
+    }
+  };
+
+  const handlePreviousDay = () => {
+    const newDate = new Date(currentDate);
+    newDate.setDate(newDate.getDate() - 1);
+    onDateChange(newDate);
+  };
+
+  const handleNextDay = () => {
+    const newDate = new Date(currentDate);
+    newDate.setDate(newDate.getDate() + 1);
+    onDateChange(newDate);
+  };
+
+  const onTouchStart = (e: React.TouchEvent) => {
+    setTouchEnd(null);
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const onTouchMove = (e: React.TouchEvent) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  const onTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > minSwipeDistance;
+    const isRightSwipe = distance < -minSwipeDistance;
+
+    if (isLeftSwipe) {
+      handleNextDay();
+    }
+    if (isRightSwipe) {
+      handlePreviousDay();
     }
   };
 
@@ -164,8 +208,22 @@ const AgendaView: React.FC<AgendaViewProps> = ({
     </div>
   );
 
+  const today = new Date();
+  const isToday = currentDate.toDateString() === today.toDateString();
+
   return (
-    <div className="h-full overflow-y-auto no-scrollbar bg-[#f9c751]">
+    <div 
+      className="h-full overflow-y-auto no-scrollbar bg-[#f9c751] relative"
+      ref={containerRef}
+      onTouchStart={onTouchStart}
+      onTouchMove={onTouchMove}
+      onTouchEnd={onTouchEnd}
+    >
+      {!isToday && (
+        <div className="absolute top-2 left-1/2 transform -translate-x-1/2 z-20 bg-[#f08436] text-white px-4 py-1 rounded-full text-xs font-semibold shadow-lg">
+          {currentDate < today ? 'Dia anterior' : 'Dia futuro'}
+        </div>
+      )}
       <div className="flex h-full">
         {timeColumnHTML}
         {scheduleGrid}
@@ -222,6 +280,14 @@ const AgendaView: React.FC<AgendaViewProps> = ({
           </div>
         </div>
       )}
+
+      {/* Task Completion Animation */}
+      <TaskCompletionAnimation
+        isVisible={showCompletionAnimation}
+        onComplete={() => setShowCompletionAnimation(false)}
+        coins={50}
+        xp={100}
+      />
     </div>
   );
 };

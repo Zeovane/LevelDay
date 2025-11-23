@@ -7,6 +7,7 @@ import NoteDetailView from './components/NoteDetailView';
 import ProfileView from './components/ProfileView';
 import StoreView from './components/StoreView';
 import SettingsView from './components/SettingsView';
+import CalendarModal from './components/CalendarModal';
 import { Task, Note, Annotation } from './types';
 import './style.css';
 
@@ -28,6 +29,7 @@ const App: React.FC = () => {
   const [currentDate, setCurrentDate] = useState<Date>(new Date());
   const [userCoins, setUserCoins] = useState(1250);
   const [userXP, setUserXP] = useState(124821468);
+  const [isCalendarOpen, setIsCalendarOpen] = useState(false);
 
   const handleTabChange = (tab: 'Perfil' | 'Agenda' | 'Loja') => {
     setActiveTab(tab);
@@ -170,7 +172,8 @@ const App: React.FC = () => {
         userCoins={userCoins}
         onSettingsOpen={() => setCurrentPage('settings')}
         onSettingsClose={() => setCurrentPage('perfil')}
-        onCalendarOpen={() => {}}
+        onCalendarOpen={() => setIsCalendarOpen(true)}
+        onDateChange={setCurrentDate}
       />
       
       <main className="flex-grow overflow-hidden bg-gray-50">
@@ -204,6 +207,18 @@ const App: React.FC = () => {
           </svg>
         </button>
       )}
+
+      {/* Calendar Modal */}
+      <CalendarModal
+        isOpen={isCalendarOpen}
+        onClose={() => setIsCalendarOpen(false)}
+        currentDate={currentDate}
+        tasks={tasks}
+        onDateSelect={(date) => {
+          setCurrentDate(date);
+          setIsCalendarOpen(false);
+        }}
+      />
     </div>
   );
 };

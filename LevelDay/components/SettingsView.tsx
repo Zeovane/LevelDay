@@ -130,3 +130,4 @@ const SettingsView: React.FC<SettingsViewProps> = ({ onBack }) => {
 
 export default SettingsView;
 
+
