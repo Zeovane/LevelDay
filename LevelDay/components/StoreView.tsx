@@ -13,7 +13,7 @@ interface StoreItem {
   description: string;
   cost: number;
   icon: string;
-  category: 'theme' | 'icon' | 'badge';
+  category: 'theme' | 'icon' | 'avatar';
 }
 
 const StoreView: React.FC<StoreViewProps> = ({ userCoins, purchasedThemes, onPurchase }) => {
@@ -46,11 +46,27 @@ const StoreView: React.FC<StoreViewProps> = ({ userCoins, purchasedThemes, onPur
     },
     {
       id: 4,
-      name: 'Badge VIP',
+      name: 'Avatar VIP',
       description: 'Mostre que você é um membro VIP',
       cost: 1000,
       icon: '👑',
-      category: 'badge'
+      category: 'avatar'
+    },
+    {
+      id: 7,
+      name: 'Avatar Estrela',
+      description: 'Avatar especial com estrela',
+      cost: 600,
+      icon: '⭐',
+      category: 'avatar'
+    },
+    {
+      id: 8,
+      name: 'Avatar Robô',
+      description: 'Avatar futurista de robô',
+      cost: 450,
+      icon: '🤖',
+      category: 'avatar'
     },
     {
       id: 5,
@@ -106,11 +122,89 @@ const StoreView: React.FC<StoreViewProps> = ({ userCoins, purchasedThemes, onPur
         return 'bg-blue-100 border-blue-300';
       case 'icon':
         return 'bg-yellow-100 border-yellow-300';
-      case 'badge':
+      case 'avatar':
         return 'bg-purple-100 border-purple-300';
       default:
         return 'bg-gray-100 border-gray-300';
     }
+  };
+
+  const getSectionTitle = (category: string) => {
+    switch (category) {
+      case 'theme':
+        return 'Temas';
+      case 'icon':
+        return 'Ícones';
+      case 'avatar':
+        return 'Customização de Avatar';
+      default:
+        return '';
+    }
+  };
+
+  const getSectionIcon = (category: string) => {
+    switch (category) {
+      case 'theme':
+        return '🎨';
+      case 'icon':
+        return '⭐';
+      case 'avatar':
+        return '👤';
+      default:
+        return '';
+    }
+  };
+
+  // Separar itens por categoria
+  const themes = storeItems.filter(item => item.category === 'theme');
+  const icons = storeItems.filter(item => item.category === 'icon');
+  const avatars = storeItems.filter(item => item.category === 'avatar');
+
+  const renderItemCard = (item: StoreItem) => {
+    const canAfford = userCoins >= item.cost;
+    const isTheme = item.category === 'theme';
+    const themeKey = item.name === 'Tema Azul' ? 'blue' : item.name === 'Tema Escuro' ? 'dark' : '';
+    const isPurchased = isTheme && themeKey && purchasedThemes.has(themeKey);
+
+    return (
+      <div
+        key={item.id}
+        className={`theme-bg-card rounded-lg shadow-md overflow-hidden border-2 ${getCategoryColor(item.category)} ${
+          !canAfford ? 'opacity-60' : ''
+        } ${isPurchased ? 'ring-2 ring-green-500' : ''}`}
+      >
+        <div className="p-4">
+          <div className="text-4xl text-center mb-2">{item.icon}</div>
+          <h3 className="text-lg font-bold theme-text-primary text-center mb-1">{item.name}</h3>
+          <p className="text-xs theme-text-secondary text-center mb-3 min-h-[32px]">{item.description}</p>
+          
+          <div className="flex items-center justify-center mb-3">
+            <div className="flex items-center theme-secondary border theme-border-dark rounded-full px-3 py-1">
+              <div className="w-4 h-4 rounded-full flex items-center justify-center mr-1" style={{ backgroundColor: 'var(--coin-bg)', border: '2px solid var(--coin-border)', color: 'var(--coin-text)' }}>
+                <span className="font-bold text-[10px]">S</span>
+              </div>
+              <span className={`font-bold text-sm ${canAfford ? 'theme-text-primary' : 'theme-text-secondary'}`}>
+                {item.cost}
+              </span>
+            </div>
+          </div>
+
+          <button
+            onClick={() => handlePurchase(item)}
+            disabled={!canAfford || isPurchased}
+            className={`w-full py-2 rounded-lg font-semibold text-sm transition-colors ${
+              isPurchased
+                ? 'bg-green-500 text-white cursor-default'
+                : canAfford
+                ? 'theme-success hover:opacity-90 theme-text-light'
+                : 'theme-bg-container theme-text-secondary cursor-not-allowed'
+            }`}
+          >
+            {isPurchased ? 'Comprado' : canAfford ? 'Comprar' : 'Insuficiente'}
+          </button>
+        </div>
+      </div>
+    );
   };
 
   return (
@@ -130,54 +224,44 @@ const StoreView: React.FC<StoreViewProps> = ({ userCoins, purchasedThemes, onPur
           </div>
         </div>
 
-        {/* Store Items Grid */}
-        <div className="grid grid-cols-2 gap-4">
-          {storeItems.map((item) => {
-            const canAfford = userCoins >= item.cost;
-            const isTheme = item.category === 'theme';
-            const themeKey = item.name === 'Tema Azul' ? 'blue' : item.name === 'Tema Escuro' ? 'dark' : '';
-            const isPurchased = isTheme && themeKey && purchasedThemes.has(themeKey);
-            return (
-              <div
-                key={item.id}
-                className={`theme-bg-card rounded-lg shadow-md overflow-hidden border-2 ${getCategoryColor(item.category)} ${
-                  !canAfford ? 'opacity-60' : ''
-                } ${isPurchased ? 'ring-2 ring-green-500' : ''}`}
-              >
-                <div className="p-4">
-                  <div className="text-4xl text-center mb-2">{item.icon}</div>
-                  <h3 className="text-lg font-bold theme-text-primary text-center mb-1">{item.name}</h3>
-                  <p className="text-xs theme-text-secondary text-center mb-3 min-h-[32px]">{item.description}</p>
-                  
-                  <div className="flex items-center justify-center mb-3">
-                    <div className="flex items-center theme-secondary border theme-border-dark rounded-full px-3 py-1">
-                      <div className="w-4 h-4 rounded-full flex items-center justify-center mr-1" style={{ backgroundColor: 'var(--coin-bg)', border: '2px solid var(--coin-border)', color: 'var(--coin-text)' }}>
-                        <span className="font-bold text-[10px]">S</span>
-                      </div>
-                      <span className={`font-bold text-sm ${canAfford ? 'theme-text-primary' : 'theme-text-secondary'}`}>
-                        {item.cost}
-                      </span>
-                    </div>
-                  </div>
+        {/* Temas Section */}
+        {themes.length > 0 && (
+          <div className="space-y-4">
+            <div className="flex items-center gap-2">
+              <span className="text-2xl">{getSectionIcon('theme')}</span>
+              <h3 className="text-xl font-bold theme-text-primary">{getSectionTitle('theme')}</h3>
+            </div>
+            <div className="grid grid-cols-2 gap-4">
+              {themes.map(item => renderItemCard(item))}
+            </div>
+          </div>
+        )}
 
-                  <button
-                    onClick={() => handlePurchase(item)}
-                    disabled={!canAfford || isPurchased}
-                    className={`w-full py-2 rounded-lg font-semibold text-sm transition-colors ${
-                      isPurchased
-                        ? 'bg-green-500 text-white cursor-default'
-                        : canAfford
-                        ? 'theme-success hover:opacity-90 theme-text-light'
-                        : 'theme-bg-container theme-text-secondary cursor-not-allowed'
-                    }`}
-                  >
-                    {isPurchased ? 'Comprado' : canAfford ? 'Comprar' : 'Insuficiente'}
-                  </button>
-                </div>
-              </div>
-            );
-          })}
-        </div>
+        {/* Ícones Section */}
+        {icons.length > 0 && (
+          <div className="space-y-4">
+            <div className="flex items-center gap-2">
+              <span className="text-2xl">{getSectionIcon('icon')}</span>
+              <h3 className="text-xl font-bold theme-text-primary">{getSectionTitle('icon')}</h3>
+            </div>
+            <div className="grid grid-cols-2 gap-4">
+              {icons.map(item => renderItemCard(item))}
+            </div>
+          </div>
+        )}
+
+        {/* Customização de Avatar Section */}
+        {avatars.length > 0 && (
+          <div className="space-y-4">
+            <div className="flex items-center gap-2">
+              <span className="text-2xl">{getSectionIcon('avatar')}</span>
+              <h3 className="text-xl font-bold theme-text-primary">{getSectionTitle('avatar')}</h3>
+            </div>
+            <div className="grid grid-cols-2 gap-4">
+              {avatars.map(item => renderItemCard(item))}
+            </div>
+          </div>
+        )}
 
         {/* Info Section */}
         <div className="theme-bg-card rounded-lg shadow-md p-4">

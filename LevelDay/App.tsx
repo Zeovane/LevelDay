@@ -150,6 +150,10 @@ const App: React.FC = () => {
             // Protótipo - apenas incrementa o contador
             setUserFriends(prev => prev + 1);
           }}
+          onInventory={() => {
+            // Protótipo - pode abrir uma página de inventário no futuro
+            alert('Inventário em desenvolvimento!');
+          }}
         />;
       case 'loja':
         return <StoreView 
