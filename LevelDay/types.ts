@@ -38,4 +38,4 @@ export interface Note {
 }
 
 export type TabType = 'Perfil' | 'Agenda' | 'Loja';
-export type PageType = 'perfil' | 'settings' | 'agenda' | 'notes' | 'noteDetail' | 'loja';
+export type PageType = 'perfil' | 'settings' | 'agenda' | 'notes' | 'noteDetail' | 'loja' | 'inventory';

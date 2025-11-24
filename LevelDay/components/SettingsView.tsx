@@ -2,12 +2,9 @@ import React from 'react';
 
 interface SettingsViewProps {
   onBack: () => void;
-  purchasedThemes: Set<string>;
-  currentTheme: 'default' | 'blue' | 'dark';
-  onThemeChange: (theme: 'default' | 'blue' | 'dark') => void;
 }
 
-const SettingsView: React.FC<SettingsViewProps> = ({ onBack, purchasedThemes, currentTheme, onThemeChange }) => {
+const SettingsView: React.FC<SettingsViewProps> = ({ onBack }) => {
   const [notifications, setNotifications] = React.useState(true);
   const [soundEnabled, setSoundEnabled] = React.useState(true);
 
@@ -72,84 +69,6 @@ const SettingsView: React.FC<SettingsViewProps> = ({ onBack, purchasedThemes, cu
           </div>
         </div>
 
-        {/* Theme Settings */}
-        {purchasedThemes.size > 0 && (
-          <div className="theme-bg-card rounded-lg shadow-md p-4">
-            <div className="mb-4">
-              <div className="flex items-center mb-4">
-                <div className="w-10 h-10 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full flex items-center justify-center mr-3">
-                  <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"></path>
-                  </svg>
-                </div>
-                <div>
-                  <h3 className="font-semibold theme-text-primary">Tema</h3>
-                  <p className="text-sm theme-text-secondary">Escolha o tema do aplicativo</p>
-                </div>
-              </div>
-              
-              <div className="grid grid-cols-3 gap-3">
-                {/* Default Theme - sempre disponível */}
-                <button
-                  onClick={() => onThemeChange('default')}
-                  className={`p-4 rounded-lg border-2 transition-all ${
-                    currentTheme === 'default'
-                      ? 'border-[#f08436] bg-orange-50'
-                      : 'theme-border theme-bg-card hover:opacity-80'
-                  }`}
-                >
-                  <div className="flex flex-col items-center">
-                    <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-[#f08436] via-[#f9c751] to-[#85cd39] mb-2"></div>
-                    <span className="text-xs font-semibold theme-text-primary">Padrão</span>
-                    {currentTheme === 'default' && (
-                      <div className="mt-1 w-2 h-2 bg-[#f08436] rounded-full"></div>
-                    )}
-                  </div>
-                </button>
-
-                {/* Blue Theme - apenas se comprado */}
-                {purchasedThemes.has('blue') && (
-                  <button
-                    onClick={() => onThemeChange('blue')}
-                    className={`p-4 rounded-lg border-2 transition-all ${
-                      currentTheme === 'blue'
-                        ? 'border-blue-500 bg-blue-50'
-                        : 'theme-border theme-bg-card hover:opacity-80'
-                    }`}
-                  >
-                    <div className="flex flex-col items-center">
-                      <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-blue-400 via-blue-500 to-blue-600 mb-2"></div>
-                      <span className="text-xs font-semibold theme-text-primary">Azul</span>
-                      {currentTheme === 'blue' && (
-                        <div className="mt-1 w-2 h-2 bg-blue-500 rounded-full"></div>
-                      )}
-                    </div>
-                  </button>
-                )}
-
-                {/* Dark Theme - apenas se comprado */}
-                {purchasedThemes.has('dark') && (
-                  <button
-                    onClick={() => onThemeChange('dark')}
-                    className={`p-4 rounded-lg border-2 transition-all ${
-                      currentTheme === 'dark'
-                        ? 'border-gray-700 bg-gray-100'
-                        : 'theme-border theme-bg-card hover:opacity-80'
-                    }`}
-                  >
-                    <div className="flex flex-col items-center">
-                      <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-gray-700 via-gray-800 to-gray-900 mb-2"></div>
-                      <span className={`text-xs font-semibold ${currentTheme === 'dark' ? 'text-gray-900' : 'theme-text-primary'}`}>Escuro</span>
-                      {currentTheme === 'dark' && (
-                        <div className="mt-1 w-2 h-2 bg-gray-700 rounded-full"></div>
-                      )}
-                    </div>
-                  </button>
-                )}
-              </div>
-            </div>
-          </div>
-        )}
 
         {/* About Section */}
         <div className="theme-bg-card rounded-lg shadow-md p-4">

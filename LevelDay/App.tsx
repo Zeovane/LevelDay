@@ -7,6 +7,7 @@ import NoteDetailView from './components/NoteDetailView';
 import ProfileView from './components/ProfileView';
 import StoreView from './components/StoreView';
 import SettingsView from './components/SettingsView';
+import InventoryView from './components/InventoryView';
 import CalendarModal from './components/CalendarModal';
 import LoginView from './components/LoginView';
 import { Task, Note, Annotation } from './types';
@@ -15,7 +16,7 @@ import './style.css';
 const App: React.FC = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [activeTab, setActiveTab] = useState<'Perfil' | 'Agenda' | 'Loja'>('Agenda');
-  const [currentPage, setCurrentPage] = useState<'perfil' | 'settings' | 'agenda' | 'notes' | 'noteDetail' | 'loja'>('agenda');
+  const [currentPage, setCurrentPage] = useState<'perfil' | 'settings' | 'agenda' | 'notes' | 'noteDetail' | 'loja' | 'inventory'>('agenda');
   const [notes, setNotes] = useState<Note[]>([
     { id: 1, title: 'notas 1', annotations: [ 
       { id: 101, time: '09:15', text: 'Primeira anotação.' }, 
@@ -151,8 +152,7 @@ const App: React.FC = () => {
             setUserFriends(prev => prev + 1);
           }}
           onInventory={() => {
-            // Protótipo - pode abrir uma página de inventário no futuro
-            alert('Inventário em desenvolvimento!');
+            setCurrentPage('inventory');
           }}
         />;
       case 'loja':
@@ -174,6 +174,10 @@ const App: React.FC = () => {
         />;
       case 'settings':
         return <SettingsView 
+          onBack={() => setCurrentPage('perfil')}
+        />;
+      case 'inventory':
+        return <InventoryView 
           onBack={() => setCurrentPage('perfil')}
           purchasedThemes={purchasedThemes}
           currentTheme={currentTheme}

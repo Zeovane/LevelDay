@@ -51,10 +51,22 @@ const Header: React.FC<HeaderProps> = ({
             <div className="w-8"></div>
           </div>
         );
+      } else if (currentPage === 'inventory') {
+        return (
+          <div className={baseHeaderClasses}>
+            <button onClick={onSettingsClose} className="text-gray-300 hover:text-white">
+              <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7"></path>
+              </svg>
+            </button>
+            <h1 className="text-xl font-semibold theme-text-light">INVENTÁRIO</h1>
+            <div className="w-8"></div>
+          </div>
+        );
       } else {
         return (
           <div className={baseHeaderClasses}>
-            <h1 className="text-3xl font-light tracking-wider theme-text-light">PERFIL</h1>
+            <div className="w-8"></div>
             <div className="flex items-center space-x-4">
               <div className="flex items-center bg-black bg-opacity-20 rounded-full px-3 py-1 border border-orange-500">
                 <div className="w-5 h-5 rounded-full flex items-center justify-center font-bold text-xs mr-1" style={{ backgroundColor: 'var(--coin-bg)', border: '2px solid var(--coin-border)', color: 'var(--coin-text)' }}>S</div>
@@ -73,7 +85,7 @@ const Header: React.FC<HeaderProps> = ({
     } else if (activeTab === 'Loja') {
       return (
         <div className={baseHeaderClasses}>
-          <h1 className="text-3xl font-light tracking-wider theme-text-light">LOJA</h1>
+          <div className="w-8"></div>
           <div className="flex items-center space-x-4">
             <div className="flex items-center bg-black bg-opacity-20 rounded-full px-3 py-1 border border-orange-500">
               <div className="w-5 h-5 bg-[#f9c751] border-2 border-[#e4a82e] rounded-full flex items-center justify-center text-black font-bold text-xs mr-1">S</div>

@@ -47,7 +47,7 @@ const StoreView: React.FC<StoreViewProps> = ({ userCoins, purchasedThemes, onPur
     {
       id: 4,
       name: 'Avatar VIP',
-      description: 'Mostre que você é um membro VIP',
+      description: 'Avatar especial VIP para seu perfil',
       cost: 1000,
       icon: '👑',
       category: 'avatar'
