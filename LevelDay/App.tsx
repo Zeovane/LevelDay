@@ -31,6 +31,7 @@ const App: React.FC = () => {
   const [currentDate, setCurrentDate] = useState<Date>(new Date());
   const [userCoins, setUserCoins] = useState(1250);
   const [userXP, setUserXP] = useState(124821468);
+  const [userFriends, setUserFriends] = useState(0);
   const [isCalendarOpen, setIsCalendarOpen] = useState(false);
   const [purchasedThemes, setPurchasedThemes] = useState<Set<string>>(new Set());
   const [currentTheme, setCurrentTheme] = useState<'default' | 'blue' | 'dark'>('default');
@@ -144,6 +145,11 @@ const App: React.FC = () => {
         return <ProfileView 
           userCoins={userCoins}
           userXP={userXP}
+          userFriends={userFriends}
+          onAddFriend={() => {
+            // Protótipo - apenas incrementa o contador
+            setUserFriends(prev => prev + 1);
+          }}
         />;
       case 'loja':
         return <StoreView 

@@ -3,9 +3,11 @@ import React from 'react';
 interface ProfileViewProps {
   userCoins: number;
   userXP: number;
+  userFriends: number;
+  onAddFriend: () => void;
 }
 
-const ProfileView: React.FC<ProfileViewProps> = ({ userCoins, userXP }) => {
+const ProfileView: React.FC<ProfileViewProps> = ({ userCoins, userXP, userFriends, onAddFriend }) => {
   const formatXP = (xp: number) => {
     if (xp >= 1000000) {
       return `${(xp / 1000000).toFixed(1)}M`;
@@ -28,6 +30,22 @@ const ProfileView: React.FC<ProfileViewProps> = ({ userCoins, userXP }) => {
             </div>
           </div>
           <h2 className="text-2xl font-bold theme-text-primary text-center mb-2">Usuário</h2>
+          <p className="text-center theme-text-secondary mb-4">
+            {userFriends === 0 
+              ? 'Nenhum amigo' 
+              : userFriends === 1 
+              ? '1 amigo' 
+              : `${userFriends} amigos`}
+          </p>
+          <button
+            onClick={onAddFriend}
+            className="w-full py-2 px-4 theme-primary theme-text-light rounded-lg font-semibold hover:opacity-90 transition-opacity flex items-center justify-center gap-2"
+          >
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 4v16m8-8H4"></path>
+            </svg>
+            Adicionar Amigo
+          </button>
         </div>
 
         {/* Stats Grid */}
