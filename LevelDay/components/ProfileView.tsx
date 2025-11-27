@@ -23,19 +23,31 @@ const ProfileView: React.FC<ProfileViewProps> = ({
   const progressPercentage = 75;
 
   return (
-    <div className="theme-bg-main h-full overflow-y-auto no-scrollbar">
-      <div className="p-6 space-y-6">
-        {/* Avatar e Nome */}
-        <div className="flex flex-col items-center pt-2">
-          <div className="w-28 h-28 theme-bg-container rounded-full flex items-center justify-center mb-4 border-4 border-white shadow-lg">
-            <svg className="w-16 h-16 theme-text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
-            </svg>
-          </div>
-          <h2 className="text-xl font-medium theme-text-primary mb-3">nome</h2>
+    <div className="theme-bg-main h-full overflow-y-auto no-scrollbar flex flex-col">
+      {/* Seção superior com foto de perfil */}
+      <div className="relative w-full flex items-center justify-center -mt-2">
+        {/* Foto de perfil com tamanho específico */}
+        <img 
+          src="/Imagens/foto de usuario.png" 
+          alt="Foto de perfil" 
+          className="object-cover"
+          style={{ 
+            width: '393px',
+            height: '229px',
+            display: 'block',
+            objectFit: 'cover'
+          }}
+        />
+      </div>
+
+      {/* Seção inferior com informações */}
+      <div className="flex-1 theme-bg-main p-6 space-y-6 -mt-8 rounded-t-3xl relative z-10">
+        {/* Nome e informações */}
+        <div className="flex flex-col items-center pt-8">
+          <h2 className="text-2xl font-bold theme-text-primary mb-1">nome</h2>
           
           {/* Seguidores e Seguindo */}
-          <div className="flex items-center gap-4 mb-4">
+          <div className="flex items-center gap-4 mb-4 mt-2">
             <div className="text-center">
               <p className="text-lg font-semibold theme-text-primary">{userFollowers}</p>
               <p className="text-sm theme-text-secondary">Seguidores</p>
