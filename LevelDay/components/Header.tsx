@@ -188,9 +188,9 @@ const Header: React.FC<HeaderProps> = ({
               <div className="flex items-center cursor-pointer" onClick={handleToday}>
                 <span className="text-5xl font-light theme-text-light">{String(day).padStart(2, '0')}</span>
                 <div className="ml-3">
-                  <p className={`text-sm font-semibold tracking-wider ${currentTheme === 'blue' ? 'text-white' : 'theme-text-secondary'}`}>{month}, {dayOfWeek}</p>
+                  <p className="text-sm font-semibold tracking-wider text-white">{month}, {dayOfWeek}</p>
                   {!isToday && (
-                    <p className={`text-xs mt-0.5 ${currentTheme === 'blue' ? 'text-white opacity-80' : 'theme-text-secondary'}`}>Toque para hoje</p>
+                    <p className="text-xs mt-0.5 text-white opacity-80">Toque para hoje</p>
                   )}
                 </div>
               </div>

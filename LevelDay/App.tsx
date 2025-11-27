@@ -11,7 +11,6 @@ import InventoryView from './components/InventoryView';
 import CalendarModal from './components/CalendarModal';
 import LoginView from './components/LoginView';
 import { Task, Note, Annotation } from './types';
-import './style.css';
 
 const App: React.FC = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
