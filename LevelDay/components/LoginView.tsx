@@ -100,7 +100,8 @@ const LoginView: React.FC<LoginViewProps> = ({ onLogin }) => {
           <div className="flex justify-end">
             <button
               type="button"
-              className="text-sm text-[#f08436] hover:text-[#ed6b2d] font-medium"
+              className="text-sm font-medium"
+              style={{ color: 'var(--theme-accent)' }}
             >
               Esqueceu a senha?
             </button>
@@ -109,7 +110,7 @@ const LoginView: React.FC<LoginViewProps> = ({ onLogin }) => {
           {/* Login Button */}
           <button
             type="submit"
-            className="w-full bg-[#f08436] hover:bg-[#ed6b2d] text-white font-bold py-3 px-4 rounded-lg transition-colors shadow-lg hover:shadow-xl transform hover:scale-[1.02] transition-all duration-200"
+            className="w-full theme-accent hover:opacity-90 text-white font-bold py-3 px-4 rounded-lg transition-colors shadow-lg hover:shadow-xl transform hover:scale-[1.02] transition-all duration-200"
           >
             Entrar
           </button>
@@ -168,7 +169,10 @@ const LoginView: React.FC<LoginViewProps> = ({ onLogin }) => {
         <div className="text-center mt-6">
           <p className="text-gray-600 text-sm">
             Não tem uma conta?{' '}
-            <button className="text-[#f08436] hover:text-[#ed6b2d] font-semibold">
+            <button 
+              className="font-semibold hover:opacity-80"
+              style={{ color: 'var(--theme-accent)' }}
+            >
               Criar conta
             </button>
           </p>
