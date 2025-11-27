@@ -210,26 +210,12 @@ const StoreView: React.FC<StoreViewProps> = ({ userCoins, purchasedThemes, onPur
   return (
     <div className="theme-bg-main w-full h-full overflow-y-auto no-scrollbar">
       <div className="p-6 space-y-6 pb-20">
-        {/* Store Header */}
-        <div className="theme-bg-card rounded-lg shadow-md p-6 text-center">
-          <h2 className="text-2xl font-bold theme-text-primary mb-2">Loja</h2>
-          <p className="theme-text-secondary text-sm">Personalize sua experiência</p>
-          <div className="mt-4 flex items-center justify-center">
-            <div className="flex items-center theme-secondary border-2 theme-border-dark rounded-full px-4 py-2">
-              <div className="w-6 h-6 rounded-full flex items-center justify-center mr-2 border-2" style={{ backgroundColor: 'var(--coin-bg)', borderColor: 'var(--coin-border)', color: 'var(--coin-text)' }}>
-                <span className="font-bold text-xs">S</span>
-              </div>
-              <span className="font-bold text-lg theme-text-primary">{userCoins.toLocaleString()}</span>
-            </div>
-          </div>
-        </div>
-
         {/* Temas Section */}
         {themes.length > 0 && (
           <div className="space-y-4">
             <div className="flex items-center gap-2">
-              <span className="text-2xl">{getSectionIcon('theme')}</span>
-              <h3 className="text-xl font-bold theme-text-primary">{getSectionTitle('theme')}</h3>
+              <span className="text-3xl">{getSectionIcon('theme')}</span>
+              <h3 className="text-2xl font-bold theme-text-primary">{getSectionTitle('theme')}</h3>
             </div>
             <div className="grid grid-cols-2 gap-4">
               {themes.map(item => renderItemCard(item))}
@@ -241,8 +227,8 @@ const StoreView: React.FC<StoreViewProps> = ({ userCoins, purchasedThemes, onPur
         {icons.length > 0 && (
           <div className="space-y-4">
             <div className="flex items-center gap-2">
-              <span className="text-2xl">{getSectionIcon('icon')}</span>
-              <h3 className="text-xl font-bold theme-text-primary">{getSectionTitle('icon')}</h3>
+              <span className="text-3xl">{getSectionIcon('icon')}</span>
+              <h3 className="text-2xl font-bold theme-text-primary">{getSectionTitle('icon')}</h3>
             </div>
             <div className="grid grid-cols-2 gap-4">
               {icons.map(item => renderItemCard(item))}
@@ -254,8 +240,8 @@ const StoreView: React.FC<StoreViewProps> = ({ userCoins, purchasedThemes, onPur
         {avatars.length > 0 && (
           <div className="space-y-4">
             <div className="flex items-center gap-2">
-              <span className="text-2xl">{getSectionIcon('avatar')}</span>
-              <h3 className="text-xl font-bold theme-text-primary">{getSectionTitle('avatar')}</h3>
+              <span className="text-3xl">{getSectionIcon('avatar')}</span>
+              <h3 className="text-2xl font-bold theme-text-primary">{getSectionTitle('avatar')}</h3>
             </div>
             <div className="grid grid-cols-2 gap-4">
               {avatars.map(item => renderItemCard(item))}

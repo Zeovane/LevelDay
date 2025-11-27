@@ -11,16 +11,6 @@ const InventoryView: React.FC<InventoryViewProps> = ({ onBack, purchasedThemes, 
   return (
     <div className="theme-bg-main h-full overflow-y-auto no-scrollbar">
       <div className="p-6 space-y-6">
-        {/* Header */}
-        <div className="flex items-center mb-4">
-          <button onClick={onBack} className="mr-4">
-            <svg className="w-6 h-6 theme-text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7"></path>
-            </svg>
-          </button>
-          <h1 className="text-2xl font-bold theme-text-primary">Inventário</h1>
-        </div>
-
         {/* Temas Comprados */}
         <div className="theme-bg-card rounded-lg shadow-md p-6">
           <div className="mb-4">

@@ -158,6 +158,7 @@ const App: React.FC = () => {
           userFriends={userFriends}
           userFollowers={userFollowers}
           userFollowing={userFollowing}
+          currentTheme={currentTheme}
           onAddFriend={() => {
             // Protótipo - apenas incrementa o contador
             setUserFriends(prev => prev + 1);
@@ -217,6 +218,7 @@ const App: React.FC = () => {
         currentDate={currentDate}
         selectedNote={selectedNote}
         userCoins={userCoins}
+        currentTheme={currentTheme}
         onSettingsOpen={() => setCurrentPage('settings')}
         onSettingsClose={() => setCurrentPage('perfil')}
         onCalendarOpen={() => setIsCalendarOpen(true)}

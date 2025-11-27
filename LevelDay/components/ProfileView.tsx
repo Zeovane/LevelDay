@@ -8,6 +8,7 @@ interface ProfileViewProps {
   userFollowing: number;
   onAddFriend: () => void;
   onInventory?: () => void;
+  currentTheme?: 'default' | 'blue' | 'dark';
 }
 
 const ProfileView: React.FC<ProfileViewProps> = ({ 
@@ -17,7 +18,8 @@ const ProfileView: React.FC<ProfileViewProps> = ({
   userFollowers,
   userFollowing,
   onAddFriend, 
-  onInventory 
+  onInventory,
+  currentTheme = 'default'
 }) => {
   // Calcular progresso (exemplo: 75% do próximo nível)
   const progressPercentage = 75;
@@ -46,26 +48,32 @@ const ProfileView: React.FC<ProfileViewProps> = ({
         <div className="flex flex-col items-center pt-8">
           <h2 className="text-2xl font-bold theme-text-primary mb-1">nome</h2>
           
-          {/* Seguidores e Seguindo */}
-          <div className="flex items-center gap-4 mb-4 mt-2">
+          {/* Amigos */}
+          <div className="flex items-center justify-center mb-4 mt-2">
             <div className="text-center">
               <p className="text-lg font-semibold theme-text-primary">{userFollowers}</p>
-              <p className="text-sm theme-text-secondary">Seguidores</p>
-            </div>
-            <div className="w-px h-8 theme-border"></div>
-            <div className="text-center">
-              <p className="text-lg font-semibold theme-text-primary">{userFollowing}</p>
-              <p className="text-sm theme-text-secondary">Seguindo</p>
+              <p className="text-sm theme-text-secondary">Amigos</p>
             </div>
           </div>
 
-          {/* Botão ADD AMIGOS */}
-          <button
-            onClick={onAddFriend}
-            className="px-10 py-2.5 theme-bg-container theme-text-primary rounded-lg font-medium hover:opacity-90 transition-opacity shadow-sm mb-5 text-sm"
-          >
-            ADD AMIGOS
-          </button>
+          {/* Botões ADD AMIGOS e Inventário */}
+          <div className="flex gap-3 mb-5">
+            <button
+              onClick={onAddFriend}
+              className="px-6 py-2.5 theme-accent theme-text-light rounded-lg font-medium hover:opacity-90 transition-opacity shadow-sm text-sm"
+            >
+              ADD AMIGOS
+            </button>
+            <button
+              onClick={onInventory}
+              className="px-6 py-2.5 theme-accent theme-text-light rounded-lg font-medium hover:opacity-90 transition-opacity shadow-sm text-sm flex items-center justify-center gap-2"
+            >
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path>
+              </svg>
+              Inventário
+            </button>
+          </div>
 
           {/* Badge/Rank com Diamante */}
           <div className="relative mb-4">
@@ -101,13 +109,13 @@ const ProfileView: React.FC<ProfileViewProps> = ({
         <div className="theme-bg-card rounded-lg shadow-md p-6">
           <h3 className="text-xl font-bold theme-text-primary mb-4">Conquistas</h3>
           <div className="grid grid-cols-4 gap-4">
-            {/* Primeiras 4 medalhas (douradas com fita) */}
+            {/* Primeiras 4 troféus (dourados com fita) */}
             {[1, 2, 3, 4].map((index) => (
               <div key={index} className="flex flex-col items-center">
                 <div className="relative">
                   <div className="w-16 h-16 rounded-full bg-gradient-to-br from-yellow-300 to-yellow-500 flex items-center justify-center shadow-md">
                     <svg className="w-10 h-10 text-yellow-800" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                      <path d="M19 5h-2V3H7v2H5c-1.1 0-2 .9-2 2v1c0 2.55 1.92 4.63 4.39 4.94.63 1.5 1.98 2.63 3.61 2.96V19H7v2h10v-2h-4v-3.1c1.63-.33 2.98-1.46 3.61-2.96C19.08 12.63 21 10.55 21 8V7c0-1.1-.9-2-2-2zM5 8V7h2v3.82C5.84 10.4 5 9.3 5 8zm14 0c0 1.3-.84 2.4-2 2.82V7h2v1z"/>
                     </svg>
                   </div>
                   {/* Fita rosa/roxo */}
@@ -117,12 +125,12 @@ const ProfileView: React.FC<ProfileViewProps> = ({
                 </div>
               </div>
             ))}
-            {/* Últimas 4 medalhas (acinzentadas) */}
+            {/* Últimas 4 troféus (acinzentados) */}
             {[5, 6, 7, 8].map((index) => (
               <div key={index} className="flex flex-col items-center opacity-50">
                 <div className="w-16 h-16 rounded-full bg-gray-300 flex items-center justify-center">
                   <svg className="w-10 h-10 text-gray-500" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                    <path d="M19 5h-2V3H7v2H5c-1.1 0-2 .9-2 2v1c0 2.55 1.92 4.63 4.39 4.94.63 1.5 1.98 2.63 3.61 2.96V19H7v2h10v-2h-4v-3.1c1.63-.33 2.98-1.46 3.61-2.96C19.08 12.63 21 10.55 21 8V7c0-1.1-.9-2-2-2zM5 8V7h2v3.82C5.84 10.4 5 9.3 5 8zm14 0c0 1.3-.84 2.4-2 2.82V7h2v1z"/>
                   </svg>
                 </div>
               </div>
@@ -142,7 +150,7 @@ const ProfileView: React.FC<ProfileViewProps> = ({
                   <polyline
                     points="14,64 28,48 42,56 56,32 70,52 84,24 98,40"
                     fill="none"
-                    stroke="var(--theme-primary)"
+                    stroke={currentTheme === 'dark' ? '#ffffff' : 'var(--theme-primary)'}
                     strokeWidth="2"
                   />
                 </svg>
@@ -150,8 +158,12 @@ const ProfileView: React.FC<ProfileViewProps> = ({
                 {[64, 48, 56, 32, 52, 24, 40].map((height, index) => (
                   <div
                     key={index}
-                    className="flex-1 theme-primary rounded-t opacity-60"
-                    style={{ height: `${height}%`, zIndex: 2 }}
+                    className="flex-1 rounded-t opacity-60"
+                    style={{ 
+                      height: `${height}%`, 
+                      zIndex: 2,
+                      backgroundColor: currentTheme === 'dark' ? '#ffffff' : 'var(--theme-primary)'
+                    }}
                   ></div>
                 ))}
               </div>
@@ -167,7 +179,7 @@ const ProfileView: React.FC<ProfileViewProps> = ({
                     cy="50"
                     r="40"
                     fill="none"
-                    stroke="var(--theme-primary)"
+                    stroke={currentTheme === 'dark' ? '#ffffff' : currentTheme === 'blue' ? '#93c5fd' : 'var(--theme-primary)'}
                     strokeWidth="20"
                     strokeDasharray={`${251.2 * 0.7} ${251.2 * 0.3}`}
                     strokeDashoffset="0"
@@ -178,7 +190,7 @@ const ProfileView: React.FC<ProfileViewProps> = ({
                     cy="50"
                     r="40"
                     fill="none"
-                    stroke="var(--theme-success)"
+                    stroke={currentTheme === 'dark' ? '#1eae89' : currentTheme === 'blue' ? '#3b82f6' : 'var(--theme-success)'}
                     strokeWidth="20"
                     strokeDasharray={`${251.2 * 0.3} ${251.2 * 0.7}`}
                     strokeDashoffset={`-${251.2 * 0.7}`}
@@ -188,11 +200,11 @@ const ProfileView: React.FC<ProfileViewProps> = ({
               {/* Legenda */}
               <div className="ml-3 space-y-2">
                 <div className="flex items-center gap-2">
-                  <div className="w-3 h-3 rounded-full" style={{ backgroundColor: 'var(--theme-primary)' }}></div>
+                  <div className="w-3 h-3 rounded-full" style={{ backgroundColor: currentTheme === 'dark' ? '#ffffff' : currentTheme === 'blue' ? '#93c5fd' : 'var(--theme-primary)' }}></div>
                   <span className="text-xs theme-text-secondary">XP</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <div className="w-3 h-3 rounded-full" style={{ backgroundColor: 'var(--theme-success)' }}></div>
+                  <div className="w-3 h-3 rounded-full" style={{ backgroundColor: currentTheme === 'dark' ? '#1eae89' : currentTheme === 'blue' ? '#3b82f6' : 'var(--theme-success)' }}></div>
                   <span className="text-xs theme-text-secondary">XP</span>
                 </div>
               </div>
