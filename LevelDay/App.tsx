@@ -33,6 +33,8 @@ const App: React.FC = () => {
   const [userCoins, setUserCoins] = useState(1250);
   const [userXP, setUserXP] = useState(124821468);
   const [userFriends, setUserFriends] = useState(0);
+  const [userFollowers, setUserFollowers] = useState(500);
+  const [userFollowing, setUserFollowing] = useState(670);
   const [isCalendarOpen, setIsCalendarOpen] = useState(false);
   const [purchasedThemes, setPurchasedThemes] = useState<Set<string>>(new Set());
   const [currentTheme, setCurrentTheme] = useState<'default' | 'blue' | 'dark'>('default');
@@ -154,6 +156,8 @@ const App: React.FC = () => {
           userCoins={userCoins}
           userXP={userXP}
           userFriends={userFriends}
+          userFollowers={userFollowers}
+          userFollowing={userFollowing}
           onAddFriend={() => {
             // Protótipo - apenas incrementa o contador
             setUserFriends(prev => prev + 1);
