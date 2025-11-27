@@ -32,7 +32,7 @@ const LoginView: React.FC<LoginViewProps> = ({ onLogin }) => {
             </div>
           ) : (
             <img 
-              src="./assets/logo.png" 
+              src="./assets/Logo.png" 
               alt="LevelDay Logo" 
               className="w-32 h-32 object-contain"
               onError={() => setLogoError(true)}
