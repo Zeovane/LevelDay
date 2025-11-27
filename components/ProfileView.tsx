@@ -30,7 +30,7 @@ const ProfileView: React.FC<ProfileViewProps> = ({
       <div className="relative w-full flex items-center justify-center -mt-2">
         {/* Foto de perfil com tamanho específico */}
         <img 
-          src="/Imagens/foto de usuario.png" 
+          src="./assets/foto de usuario.png" 
           alt="Foto de perfil" 
           className="object-cover"
           style={{ 
