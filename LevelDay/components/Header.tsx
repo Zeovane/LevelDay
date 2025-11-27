@@ -11,6 +11,7 @@ interface HeaderProps {
   onSettingsClose: () => void;
   onCalendarOpen: () => void;
   onDateChange?: (date: Date) => void;
+  onAddAnnotation?: () => void;
 }
 
 const Header: React.FC<HeaderProps> = ({
@@ -22,7 +23,8 @@ const Header: React.FC<HeaderProps> = ({
   onSettingsOpen,
   onSettingsClose,
   onCalendarOpen,
-  onDateChange
+  onDateChange,
+  onAddAnnotation
 }) => {
   const monthNames = ["JANEIRO", "FEVEREIRO", "MARÇO", "ABRIL", "MAIO", "JUNHO", 
                      "JULHO", "AGOSTO", "SETEMBRO", "OUTUBRO", "NOVEMBRO", "DEZEMBRO"];
@@ -110,6 +112,17 @@ const Header: React.FC<HeaderProps> = ({
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
                 </svg>
               </button>
+              {onAddAnnotation && (
+                <button 
+                  onClick={onAddAnnotation}
+                  className="text-gray-300 hover:text-white transition-colors"
+                  aria-label="Adicionar anotação"
+                >
+                  <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                  </svg>
+                </button>
+              )}
             </div>
           </div>
         );

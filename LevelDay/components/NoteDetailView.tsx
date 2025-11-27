@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useImperativeHandle, forwardRef } from 'react';
 import { Note, Annotation } from '../types';
 import AnnotationItem from './AnnotationItem';
 
@@ -9,14 +9,25 @@ interface NoteDetailViewProps {
   onAnnotationAdd: (text: string) => void;
 }
 
-const NoteDetailView: React.FC<NoteDetailViewProps> = ({ 
+export interface NoteDetailViewHandle {
+  focusTextarea: () => void;
+}
+
+const NoteDetailView = forwardRef<NoteDetailViewHandle, NoteDetailViewProps>(({ 
   note, 
   onBack, 
   onAnnotationSchedule, 
   onAnnotationAdd 
-}) => {
+}, ref) => {
   const [newAnnotationText, setNewAnnotationText] = useState('');
   const [selectedAnnotation, setSelectedAnnotation] = useState<Annotation | null>(null);
+  const textareaRef = useRef<HTMLTextAreaElement>(null);
+
+  useImperativeHandle(ref, () => ({
+    focusTextarea: () => {
+      textareaRef.current?.focus();
+    }
+  }));
 
   if (!note) {
     return (
@@ -89,6 +100,7 @@ const NoteDetailView: React.FC<NoteDetailViewProps> = ({
       <div className="absolute bottom-0 left-0 right-0 theme-bg-card p-3 border-t theme-border">
         <div className="flex gap-2">
           <textarea
+            ref={textareaRef}
             value={newAnnotationText}
             onChange={(e) => setNewAnnotationText(e.target.value)}
             onKeyPress={handleKeyPress}
@@ -99,7 +111,7 @@ const NoteDetailView: React.FC<NoteDetailViewProps> = ({
           {newAnnotationText.trim() && (
             <button
               onClick={handleAddAnnotation}
-                className="px-4 py-2 bg-[#1eae89] text-white rounded-lg hover:bg-[#189a79] transition-colors"
+              className="px-4 py-2 bg-[#1eae89] text-white rounded-lg hover:bg-[#189a79] transition-colors"
             >
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
@@ -237,6 +249,8 @@ const NoteDetailView: React.FC<NoteDetailViewProps> = ({
       )}
     </div>
   );
-};
+});
+
+NoteDetailView.displayName = 'NoteDetailView';
 
 export default NoteDetailView;

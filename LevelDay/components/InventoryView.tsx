@@ -110,3 +110,4 @@ const InventoryView: React.FC<InventoryViewProps> = ({ onBack, purchasedThemes, 
 
 export default InventoryView;
 
+

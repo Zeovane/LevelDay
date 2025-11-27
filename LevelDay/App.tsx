@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import AgendaView from './components/AgendaView';
 import NotesView from './components/NotesView';
-import NoteDetailView from './components/NoteDetailView';
+import NoteDetailView, { NoteDetailViewHandle } from './components/NoteDetailView';
 import ProfileView from './components/ProfileView';
 import StoreView from './components/StoreView';
 import SettingsView from './components/SettingsView';
@@ -36,6 +36,7 @@ const App: React.FC = () => {
   const [isCalendarOpen, setIsCalendarOpen] = useState(false);
   const [purchasedThemes, setPurchasedThemes] = useState<Set<string>>(new Set());
   const [currentTheme, setCurrentTheme] = useState<'default' | 'blue' | 'dark'>('default');
+  const noteDetailViewRef = useRef<NoteDetailViewHandle>(null);
 
   const handleTabChange = (tab: 'Perfil' | 'Agenda' | 'Loja') => {
     setActiveTab(tab);
@@ -88,6 +89,7 @@ const App: React.FC = () => {
         />;
       case 'noteDetail':
         return <NoteDetailView 
+          ref={noteDetailViewRef}
           note={selectedNote}
           onBack={handleBackToNotes}
           onAnnotationSchedule={(annotation) => {
@@ -139,6 +141,11 @@ const App: React.FC = () => {
                   ? { ...note, annotations: [newAnnotation, ...note.annotations] }
                   : note
               ));
+              // Atualizar selectedNote para refletir a mudança imediatamente
+              setSelectedNote(prev => prev ? {
+                ...prev,
+                annotations: [newAnnotation, ...prev.annotations]
+              } : null);
             }
           }}
         />;
@@ -210,6 +217,11 @@ const App: React.FC = () => {
         onSettingsClose={() => setCurrentPage('perfil')}
         onCalendarOpen={() => setIsCalendarOpen(true)}
         onDateChange={setCurrentDate}
+        onAddAnnotation={() => {
+          if (currentPage === 'noteDetail' && noteDetailViewRef.current) {
+            noteDetailViewRef.current.focusTextarea();
+          }
+        }}
       />
       
       <main className="flex-grow theme-bg-container overflow-hidden flex flex-col">

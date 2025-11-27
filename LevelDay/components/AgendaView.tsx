@@ -172,13 +172,13 @@ const AgendaView: React.FC<AgendaViewProps> = ({
           }}
         >
             <span className="text-xs theme-text-primary font-medium">
-            {String(hour).padStart(2, '0')}:00
-          </span>
-        </div>
-      ))}
+              {String(hour).padStart(2, '0')}:00
+            </span>
+          </div>
+        ))}
     </div>
   );
-  
+
   const scheduleGrid = (
     <div className="flex-1 relative" style={{ height: `${totalHeight}px`, minHeight: `${totalHeight}px` }}>
       {/* Horizontal lines - renderizadas como elementos separados para garantir que todas se estendam completamente */}
